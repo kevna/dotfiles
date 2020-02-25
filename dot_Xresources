@@ -1,0 +1,128 @@
+!Xft (X font config)
+! Xft*dpi:	111
+! Xft*antialias:	false
+! Xft*hintstyle:	hintfull
+! Xft*hinting:	1
+! Xft*rgba:	rgb
+! Xft*lcdfilter: lcddefault
+
+#define t_maxlines 512
+#define t_font xft:monospace:size=7
+#define t_b_font xft:monospace:size=7:style=bold
+#define t_i_font xft:monospace:size=7:style=italic
+#define t_b_i_font xft:monospace:size=7:style=bold
+
+!#define t_font xft:IBM 3270 Narrow:size=7
+!#define t_i_font t_font
+
+! ==== COLOURSCHEME: gruvbox ====
+#define t_black     [85]#282828
+#define t_i_black   #928374
+#define t_red       #cc241d
+#define t_i_red     #fb4934
+#define t_green     #98971a
+#define t_i_green   #b8bb26
+#define t_yellow    #d79921
+#define t_i_yellow  #fabd2f
+#define t_blue      #458588
+#define t_i_blue    #83a598
+#define t_magenta   #b16286
+#define t_i_magenta #d3869b
+#define t_cyan      #689d6a
+#define t_i_cyan    #8ec07c
+#define t_white     #a89984
+#define t_i_white   #ebdbb2
+#define t_fg        #fbf1c7
+#define t_bg        #1d2021
+#define t_cursor    #fbf1c7
+
+*.color0:	t_black
+*.color1:	t_red
+*.color2:	t_green
+*.color3:	t_yellow
+*.color4:	t_blue
+*.color5:	t_magenta
+*.color6:	t_cyan
+*.color7:	t_white
+*.color8:	t_i_black
+*.color9:	t_i_red
+*.color10:	t_i_green
+*.color11:	t_i_yellow
+*.color12:	t_i_blue
+*.color13:	t_i_magenta
+*.color14:	t_i_cyan
+*.color15:	t_i_white
+*.foreground:	t_fg
+*.background:	t_bg
+rofi.font:	Fantasque Sans Mono 8
+
+!URxvt settings
+!title
+!URxvt*title:	Terminal
+URxvt*buffered:		true
+!window transparancy
+URxvt*depth:		32
+!URxvt*backgroundPixmap:	/home/kevna/Pictures/galaxy-small-curve2.jpg;style=root-tiled
+!fading (on defocus)
+URxvt*fading:		20
+URxvt*fadeColor:	t_bg
+!bell settings
+!URxvt*visualBell:	true
+URxvt*urgentOnBell:	true
+
+!font setting
+URxvt*font:		t_font
+URxvt*boldFont:		t_b_font
+URxvt*italicFont:	t_i_font
+URxvt*boldItalicFont:	t_b_i_font
+URxvt*letterSpace:	0
+URxvt*lineSpace:	0
+
+URxvt*cursorColor:	t_cursor
+!URxvt*cursorBlink:	true
+!URxvt*cursorUnderline:	true
+!hide Xcursor on type
+URxvt*pointerBlank:	true
+
+!window shape
+URxvt*geometry:	105x30
+!97x25
+
+!scroll settings
+URxvt*scrollstyle:	plain
+URxvt*thickness:	5
+URxvt*scrollColor:	t_fg
+URxvt*transpscrollbar:	true
+URxvt*scrollBar_right:	true
+URxvt*scrollBar_floating:true
+URxvt*scrollTtyOutput:	false
+URxvt*scrollTtyKeypress:false
+URxvt*scrollWithBuffer:	true
+!URxvt*scrollBar:	false
+
+!history limit (default 64)
+URxvt*saveLines:	t_maxlines
+
+URxvt*pastableTabs:	true
+
+!disable perl extensions (excepting matcher, fullscreen and vtwheel)
+URxvt*perl-ext:
+URxvt*perl-ext-common:	matcher
+scratchterm*perl-ext: tabbed
+!,fullscreen
+!extention config
+URxvt*keysym.C-Up:	perl:font-size:increase
+URxvt*keysym.C-Down:	perl:font-size:decrease
+! keyshortcut for fullscreen
+URxvt*keysym.F11:	perl:fullscreen:switch
+! browser to launch urls (matcher)
+URxvt*url-launcher:	/usr/bin/firefox
+! mouse button to open links (matcher)
+URxvt*matcher.button:	1
+! config for tabbar
+URxvt.tabbed.tabbar-fg:	2
+URxvt.tabbed.tabbar-bg:	0
+URxvt.tabbed.tab-fg:	15
+URxvt.tabbed.tab-bg:	0
+
+URxvt*keysym.Shift-End:	command:\033]721;t_maxlines\007
