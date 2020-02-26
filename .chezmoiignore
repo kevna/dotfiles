@@ -1,5 +1,4 @@
 README.md
 {{- if contains "terminal" .chezmoi.hostname }}
-**/nvim
 **/kitty
 {{- end }}

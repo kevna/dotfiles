@@ -5,16 +5,20 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'	" gruvbox color theme
-Plug 'vim-airline/vim-airline' " airline status and bufferlines
-Plug 'machakann/vim-sandwich' " sandwich :S
-" Plug 'mhinz/vim-signify'
-" Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'	" airline status and bufferlines
+Plug 'mhinz/vim-signify'	" VCS differences apear in gutter (along with some basic tools)
+" Plug 'tpope/vim-fugitive'	" more extensive git support
 " Plug 'editorconfig/editorconfig-vim' " editor config is great for collaboration
 " Plug 'w0rp/ale'		" Async Lint Engine
+
+{{- if contains "jarvis" .chezmoi.hostname }}
+" Experimental plugins we aren't ready for at work yet
+Plug 'machakann/vim-sandwich' " sandwich :S
 
 " These can be used to run unittest from within vim
 "Plug 'janko/vim-test'
 "Plug 'kassio/neoterm'
+{{- end }}
 
 call plug#end()
 
