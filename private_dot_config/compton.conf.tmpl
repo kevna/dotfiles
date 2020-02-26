@@ -18,7 +18,10 @@ shadow-opacity = 0.7;
 shadow-exclude = [
     "! name~=''", # ignore elements with no name (eg. i3 titlebars)
     "class_g = 'Firefox' && argb",
-    #"!I3_FLOATING_WINDOW@:c", # ignore non-floating windows for i3 (it also ignores tooltips and un-managed windows)
+    "window_type = 'desktop'",
+{{- if contains "terminal" .chezmoi.hostname }}
+    "!I3_FLOATING_WINDOW@:c", # ignore non-floating windows for i3 (it also ignores tooltips and un-managed windows)
+{{- end }}
     "_GTK_FRAME_EXTENTS@:c"
 ];
 
@@ -26,8 +29,7 @@ shadow-exclude = [
 inactive-dim = 0.25;
 focus-exclude = [
     "! name~=''", # ignore elements with no name (eg. i3 titlebars)
-    #class_g = 'Firefox' && argb",
-    #"!I3_FLOATING_WINDOW@:c", # ignore non-floating windows for i3 (it also ignores tooltips and un-managed windows)
+    "window_type = 'desktop'",
     "_GTK_FRAME_EXTENTS@:c"
 ];
 
@@ -37,10 +39,8 @@ fade-delta = 4;
 
 ### Misc
 use-ewmh-active-win = true;
-wintypes:
-{
-    tooltip =
-    {
+wintypes: {
+    tooltip = {
         # fade: Fade the particular type of windows.
         fade = true;
         # shadow: Give those windows shadow
@@ -49,5 +49,15 @@ wintypes:
         opacity = 0.85;
         # focus: Whether to always consider windows of this type focused.
         focus = true;
+    };
+    desktop = {
+        # fade: Fade the particular type of windows.
+        fade = false;
+        # shadow: Give those windows shadow
+        shadow = false;
+        # opacity: Default opacity for the type of windows.
+        opacity = 1;
+        # focus: Whether to always consider windows of this type focused.
+        focus = false;
     };
 };
