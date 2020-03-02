@@ -1,6 +1,7 @@
-* {
+configuration {
     font: "monospace 8";
+    modi: "combi,run";
+    theme: "gruvbox-dark-hard";
+    combi-modi: "window,drun";
 }
-
-@import "gruvbox-dark-hard.rasi"
 
