@@ -1,0 +1,11 @@
+configuration {
+	font: "monospace 8";
+	{{- if contains "terminal" .chezmoi.hostname }}
+	modi: "combi,run,connect:~/.config/rofi/connect.sh";
+	{{- else }}
+	modi: "combi,run";
+	{{- end }}
+	theme: "gruvbox-dark-hard";
+	combi-modi: "window,drun";
+	}
+
