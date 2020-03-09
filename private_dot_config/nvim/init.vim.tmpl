@@ -4,7 +4,7 @@
 " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox'	" gruvbox color theme
+Plug 'morhetz/gruvbox'		" gruvbox color theme
 Plug 'vim-airline/vim-airline'	" airline status and bufferlines
 Plug 'mhinz/vim-signify'	" VCS differences apear in gutter (along with some basic tools)
 " Plug 'tpope/vim-fugitive'	" more extensive git support
@@ -34,7 +34,7 @@ let g:gruvbox_contrast_light = 'soft'
 let g:airline_highlighting_cache = 1		" cache highlighting on redraw
 let g:airline#extensions#tabline#enabled = 1	" tabline shows open buffers
 let g:airline#extensions#ale#enabled = 1	" use powerline custom delimeters
-if $TERM =~? '\vkitty'
+if $COLORTERM =~? '\vtruecolor'
 	let g:airline_powerline_fonts = 1
 	let g:airline_skip_empty_sections = 1
 endif
@@ -94,7 +94,7 @@ augroup END
 " custom: gruvbox, candycode, jellybeans
 set bg=dark
 colorscheme gruvbox
-if $TERM =~? '\vkitty'
+if $COLORTERM =~? '\vtruecolor'
 	set termguicolors	" truecolor colouring
 	let &t_Co = 256
 endif
