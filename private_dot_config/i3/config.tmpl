@@ -12,9 +12,7 @@ hide_edge_borders smart
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-rfkill &
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id gnome-flashback &
-{{- if contains "terminal" .chezmoi.hostname }}
-exec --no-startup-id /usr/bin/gnome-screensaver
-{{- end }}
+{{/* exec --no-startup-id /usr/bin/gnome-screensaver */}}
 
 exec --no-startup-id parcellite &
 exec --no-startup-id redshift &
@@ -42,7 +40,7 @@ bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 {{- end }}
 {{- if contains "terminal" .chezmoi.hostname }}
-bindsym $mod+x exec --no-startup-id rofi -show connect
+bindsym $mod+z exec --no-startup-id rofi -show connect
 {{- end }}
 
 # use Mouse+$mod to drag floating windows
@@ -73,11 +71,8 @@ for_window [instance="$stname"] move to scratchpad
 {{- end }}
 
 # lock screen
-{{- if contains "terminal" .chezmoi.hostname }}
-bindsym $mod+BackSpace exec --no-startup-id dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
-{{- else }}
+{{/* bindsym $mod+BackSpace exec --no-startup-id dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock */}}
 bindsym $mod+BackSpace exec --no-startup-id i3lock-fancy -pf "Victor-Mono-Regular" -- scrot -z
-{{- end }}
 
 # kill focused window
 bindsym $mod+Shift+q kill
