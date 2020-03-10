@@ -2,7 +2,8 @@
 
 lakevna's dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
 
-Install them with:
-
-    chezmoi init https://github.com/kevna/dotfiles.git
+Get the appropriate package from the [latest chezmoi release](https://github.com/twpayne/chezmoi/releases/latest)
+Install it with the matching package management
+Then install the dotfiles with:
+	chezmoi init https://github.com/kevna/dotfiles.git
 
