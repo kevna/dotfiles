@@ -1,0 +1,27 @@
+# ------------------------------------------------------------------------------
+# i3-wm and packages for related config
+i3-wm
+i3status
+i3lock-fancy
+rofi
+feh
+compton
+parcellite
+xcape
+
+# ------------------------------------------------------------------------------
+# Other gui apps
+kitty
+rxvt-unicode
+zathura
+inkscape
+pavucontrol
+# gpick
+
+# ------------------------------------------------------------------------------
+# Terminal applications
+neovim
+silversearcher-ag
+htop
+# imagemagick
+# whois

@@ -1,4 +1,6 @@
 README.md
+Makefile
+packages.list
 {{- if contains "terminal" .chezmoi.hostname }}
 **/kitty
 {{- end }}
