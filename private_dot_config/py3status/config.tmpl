@@ -13,23 +13,36 @@ general {
 	color_good = "#58971a"
 	color_bad = "#cc241d"
 	color_degraded = "#689d68"
-	# olor_degraded = "#a89984"
 }
 
+{{- if contains "terminal" .chezmoi.hostname }}
+order += "window_title_async"
+order += "scratchpad_async"
+order += "file_status"
+{{- else }}
 order += "window"
 order += "scratchpad"
-#order += "group media"
+{{- end }}
+# order += "group media"
 order += "backlight"
-# order += "disk /"
 order += "group networks"
+{{- if not (contains "terminal" .chezmoi.hostname) }}
 order += "loadavg"
+{{- end }}
 order += "apt_updates"
 order += "battery_level"
 order += "clock"
 
+{{- if contains "terminal" .chezmoi.hostname }}
+window_title_async {}
+scratchpad_async {}
+file_status {
+	path = "/proc/sys/net/ipv4/conf/tun0"
+}
+{{- else }}
 window {}
-
 scratchpad {}
+{{- end }}
 
 group media {
 	frame {
@@ -49,10 +62,6 @@ backlight {
 	format = "☼{level}"
 }
 
-disk "/" {
-	format = "%avail/%total"
-}
-
 group networks {
 	cycle = 30
 
@@ -69,9 +78,11 @@ ethernet _first_ {
 	format_down = "E:down"
 }
 
+{{- if not (contains "terminal" .chezmoi.hostname) }}
 loadavg {
 	format = "{1min} {5min} {15min}"
 }
+{{- end }}
 
 apt_updates {
 	format = "[\?not_zero {apt}]"
