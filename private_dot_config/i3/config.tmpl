@@ -74,6 +74,9 @@ for_window [instance="$stname"] move to scratchpad
 {{/* bindsym $mod+BackSpace exec --no-startup-id dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock */}}
 bindsym $mod+BackSpace exec --no-startup-id i3lock-fancy -pf "Victor-Mono-Regular" -- scrot -z
 
+# warp to urgent window
+bindsym $mod+u [urgent="latest"] focus
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
