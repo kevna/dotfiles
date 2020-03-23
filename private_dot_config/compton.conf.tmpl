@@ -1,6 +1,5 @@
 ### Backend/performance options
 backend = "glx";
-paint-on-overlay = true;
 glx-no-stencil = true;
 glx-no-rebind-pixmap = true;
 unredir-if-possible = true;
@@ -8,9 +7,6 @@ xrender-sync-fence = true;
 
 ### Shadow
 shadow = true;
-no-dnd-shadow = true;
-no-dock-shadow = true;
-clear-shadow = true;
 shadow-radius = 7;
 shadow-offset-x = -7;
 shadow-offset-y = -7;
@@ -51,13 +47,21 @@ wintypes: {
         focus = true;
     };
     desktop = {
-        # fade: Fade the particular type of windows.
         fade = false;
-        # shadow: Give those windows shadow
         shadow = false;
-        # opacity: Default opacity for the type of windows.
         opacity = 1;
-        # focus: Whether to always consider windows of this type focused.
+        focus = false;
+    };
+    dock = {
+        fade = false;
+        shadow = false;
+        opacity = 1;
+        focus = false;
+    };
+    dnd = {
+        fade = false;
+        shadow = false;
+        opacity = 1;
         focus = false;
     };
 };
