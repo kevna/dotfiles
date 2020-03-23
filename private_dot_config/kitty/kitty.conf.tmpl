@@ -1,6 +1,6 @@
-# vim:fileencoding=utf-8:ft=conf:foldmethod=marker
+# vim:fileencoding=utf-8:ft=conf:foldmethod=marker:foldmarker=[[[,]]]
 
-#: Fonts {{{
+#: Fonts [[[
 
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
@@ -33,8 +33,13 @@ bold_italic_font Victor Mono SemiBold Italic
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
+symbol_map U+f000-U+f2e0 Font Awesome
+
+{{- if contains "terminal" .chezmoi.hostname }}
+font_size 9
+{{- else }}
 font_size 8
-#font_size 12
+{{- end }}
 
 #: Font size (in pts)
 
@@ -67,9 +72,9 @@ adjust_line_height -2
 #: monitor DPI to arrive at a pixel value. There must be four values
 #: corresponding to thin, normal, thick, and very thick lines.
 
-#: }}}
+#: ]]]
 
-#: Cursor customization {{{
+#: Cursor customization [[[
 
 # cursor #cccccc
 
@@ -88,9 +93,9 @@ cursor_blink_interval      0
 #: specified number of seconds of keyboard inactivity. Set to zero to
 #: never stop blinking.
 
-#: }}}
+#: ]]]
 
-#: Scrollback {{{
+#: Scrollback [[[
 
 # scrollback_lines 2000
 
@@ -112,9 +117,9 @@ scrollback_pager less --RAW-CONTROL-CHARS +INPUT_LINE_NUMBER
 #: Modify the amount scrolled by the mouse wheel or touchpad. Use
 #: negative numbers to change scroll direction.
 
-#: }}}
+#: ]]]
 
-#: Mouse {{{
+#: Mouse [[[
 
 # url_color #0087BD
 # url_style curly
@@ -168,9 +173,9 @@ copy_on_select yes
 #: Set the active window to the window under the mouse when moving the
 #: mouse around
 
-#: }}}
+#: ]]]
 
-#: Performance tuning {{{
+#: Performance tuning [[[
 
 # repaint_delay 10
 
@@ -198,9 +203,9 @@ copy_on_select yes
 #: keyboard repeat rate, you may notice some slight input latency. If
 #: so, set this to no.
 
-#: }}}
+#: ]]]
 
-#: Terminal bell {{{
+#: Terminal bell [[[
 
 # enable_audio_bell yes
 
@@ -223,9 +228,9 @@ copy_on_select yes
 #: windows in the tab and the window is not the currently focused
 #: window
 
-#: }}}
+#: ]]]
 
-#: Window layout {{{
+#: Window layout [[[
 
 # remember_window_size  yes
 # initial_window_width  640
@@ -300,9 +305,9 @@ copy_on_select yes
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-#: }}}
+#: ]]]
 
-#: Tab bar {{{
+#: Tab bar [[[
 
 # tab_bar_edge bottom
 
@@ -341,9 +346,9 @@ copy_on_select yes
 
 #: Tab bar colors and styles
 
-#: }}}
+#: ]]]
 
-#: Color scheme {{{
+#: Color scheme [[[
 
 # foreground #dddddd
 # background #000000
@@ -352,7 +357,7 @@ copy_on_select yes
 
 # background_opacity         1.0
 # dynamic_background_opacity no
-background_opacity 0.85
+background_opacity 0.75
 
 #: The opacity of the background. A number between 0 and 1, where 1 is
 #: opaque and 0 is fully transparent.  This will only work if
@@ -445,9 +450,9 @@ color14 #8ec07c
 color7  #a89984
 color15 #ebdbb2
 
-#: }}}
+#: ]]]
 
-#: Advanced {{{
+#: Advanced [[[
 
 # shell .
 
@@ -509,9 +514,9 @@ color15 #ebdbb2
 #: you are doing, not because you read some advice on Stack Overflow
 #: to change it.
 
-#: }}}
+#: ]]]
 
-#: OS specific tweaks {{{
+#: OS specific tweaks [[[
 
 # macos_titlebar_color system
 
@@ -559,9 +564,9 @@ color15 #ebdbb2
 #: Disable this if you want kitty top-level (OS) windows to not be
 #: resizable on macOS.
 
-#: }}}
+#: ]]]
 
-#: Keyboard shortcuts {{{
+#: Keyboard shortcuts [[[
 
 #: For a list of key names, see: GLFW keys
 #: <http://www.glfw.org/docs/latest/group__keys.html>. The name to use
@@ -610,7 +615,7 @@ color15 #ebdbb2
 #: You can have kitty remove all shortcut definition seen up to this
 #: point. Useful, for instance, to remove the default shortcuts.
 
-#: Clipboard {{{
+#: Clipboard [[[
 
 # map kitty_mod+c  copy_to_clipboard
 # map kitty_mod+v  paste_from_clipboard
@@ -629,9 +634,9 @@ color15 #ebdbb2
 
 #:     map kitty_mod+y new_window less @selection
 
-#: }}}
+#: ]]]
 
-#: Scrolling {{{
+#: Scrolling [[[
 
 # map kitty_mod+up        scroll_line_up
 # map kitty_mod+k         scroll_line_up
@@ -652,9 +657,9 @@ color15 #ebdbb2
 
 #:     map kitty_mod+y new_window @ansi less +G -R
 
-#: }}}
+#: ]]]
 
-#: Window management {{{
+#: Window management [[[
 
 # map kitty_mod+enter new_window
 
@@ -686,9 +691,9 @@ color15 #ebdbb2
 # map kitty_mod+8 eighth_window
 # map kitty_mod+9 ninth_window
 # map kitty_mod+0 tenth_window
-#: }}}
+#: ]]]
 
-#: Tab management {{{
+#: Tab management [[[
 
 # map kitty_mod+right next_tab
 # map kitty_mod+left  previous_tab
@@ -707,9 +712,9 @@ color15 #ebdbb2
 #: Just as with new_window above, you can also pass the name of
 #: arbitrary commands to run when using new_tab and use
 #: new_tab_with_cwd.
-#: }}}
+#: ]]]
 
-#: Layout management {{{
+#: Layout management [[[
 
 # map kitty_mod+l next_layout
 
@@ -717,9 +722,9 @@ color15 #ebdbb2
 
 #:     map ctrl+alt+t goto_layout tall
 #:     map ctrl+alt+s goto_layout stack
-#: }}}
+#: ]]]
 
-#: Font sizes {{{
+#: Font sizes [[[
 
 #: You can change the font size for all top-level kitty windows at a
 #: time or only the current one.
@@ -735,9 +740,9 @@ color15 #ebdbb2
 #: To setup shortcuts to change only the current window's font size::
 
 #:     map kitty_mod+f6 change_font_size current 10.0
-#: }}}
+#: ]]]
 
-#: Select and act on visible text {{{
+#: Select and act on visible text [[[
 
 #: Use the hints kitten to select text and either pass it to an
 #: external program or insert it into the terminal or copy it to the
@@ -776,9 +781,9 @@ color15 #ebdbb2
 
 #: The hints kitten has many more modes of operation that you can map
 #: to different shortcuts. For a full description see kittens/hints.
-#: }}}
+#: ]]]
 
-#: Miscellaneous {{{
+#: Miscellaneous [[[
 
 # map kitty_mod+f11    toggle_fullscreen
 # map kitty_mod+u      input_unicode_character
@@ -816,6 +821,6 @@ color15 #ebdbb2
 #:     map ctrl+alt+a send_text normal Word\x1b[H
 #:     map ctrl+alt+a send_text application Word\x1bOH
 
-#: }}}
+#: ]]]
 
-# }}}
+# ]]]
