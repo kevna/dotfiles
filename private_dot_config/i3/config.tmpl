@@ -21,7 +21,7 @@ exec --no-startup-id bash -c "sleep 5 && ~/.config/i3/keyboard.sh" &
 {{- if contains "terminal" .chezmoi.hostname }}
 exec --no-startup-id ~/screens.sh &
 exec --no-startup-id xrdb ~/.Xresources &
-exec --no-startup-id conky -c ~/.conkyrc &
+exec --no-startup-id conky &
 {{- end }}
 
 {{/*
