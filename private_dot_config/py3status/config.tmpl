@@ -1,5 +1,5 @@
-# i3status configuration file.
-# see "man i3status" for documentation.
+# pystatus configuration file.
+# see "https://py3status.readthedocs.io/en/3.8/modules.html" for documentation.
 
 # It is important that this file is edited as UTF-8.
 # The following line should contain a sharp s:
@@ -18,14 +18,15 @@ general {
 {{- if contains "terminal" .chezmoi.hostname }}
 order += "window_title_async"
 order += "scratchpad_async"
-order += "file_status"
+order += "group vpn"
 {{- else }}
 order += "window"
 order += "scratchpad"
 {{- end }}
 # order += "group media"
 order += "backlight"
-order += "group networks"
+order += "group wifi"
+order += "bluetooth"
 {{- if not (contains "terminal" .chezmoi.hostname) }}
 order += "loadavg"
 {{- end }}
@@ -36,8 +37,16 @@ order += "clock"
 {{- if contains "terminal" .chezmoi.hostname }}
 window_title_async {}
 scratchpad_async {}
-file_status {
-	path = "/proc/sys/net/ipv4/conf/tun0"
+group vpn {
+	file_status {
+		path = "/proc/sys/net/ipv4/conf/tun0"
+		format = "ST_VPN {icon}"
+	}
+	net_iplist {
+		iface_blacklist = ["wlo1", "eno2", "lo"]
+		format_iface = "{ip4}"
+		format = "{format_iface}"
+	}
 }
 {{- else }}
 window {}
@@ -62,15 +71,19 @@ backlight {
 	format = "☼{level}"
 }
 
-group networks {
+group wifi {
 	cycle = 30
-
-	bluetooth {}
-
 	wifi {
-		format = "W:{icon} {ssid} {ip}|W:down"
+		format = "{icon} {ssid}|W:down"
+	}
+	net_iplist {
+		iface_blacklist = ["eno2", "tun*", "lo"]
+		format_iface = "{ip4}"
+		format = "{format_iface}"
 	}
 }
+
+bluetooth {}
 
 ethernet _first_ {
 	# if you use %speed, i3status requires root privileges
