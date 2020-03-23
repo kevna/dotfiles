@@ -27,7 +27,6 @@ call plug#end()
 let g:gruvbox_italic = 1
 let g:gruvbox_undercurl = 1
 let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_contrast_light = 'soft'
 
 " -----------------------------------------------------------------------------
 " PLUGIN CONFIG - airline
@@ -103,9 +102,17 @@ endif
 " maps using leader
 let mapleader = ","
 map <silent> <leader>p		:set paste! list!<CR>
-map <silent> <leader>l		:set bg=light<CR>
-map <silent> <leader>d		:set bg=dark<CR>
+map <silent> <leader>l		:call LightSwitch()<CR>
 map <silent> <leader>s		:set spell!<CR>
+
+function LightSwitch()
+	if &bg ==? 'dark'
+		set bg=light
+	else
+		set bg=dark
+	end
+	return 0
+endfunction
 
 " -----------------------------------------------------------------------------
 " 'normal' mode keymaps
