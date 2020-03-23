@@ -21,18 +21,21 @@ exec --no-startup-id bash -c "sleep 5 && ~/.config/i3/keyboard.sh" &
 {{- if contains "terminal" .chezmoi.hostname }}
 exec --no-startup-id ~/screens.sh &
 exec --no-startup-id xrdb ~/.Xresources &
-# exec --no-startup-id conky -c ~/.conkyrc &
+exec --no-startup-id conky -c ~/.conkyrc &
 {{- end }}
 
-{{- if contains "jarvis" .chezmoi.hostname }}
-# Pulse Audio controls
+{{/*
+# ALSAmixer controls
 # bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1%+ unmute #increase sound volume
 # bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 1%- unmute #decrease sound volume
 # bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle # mute sound
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1% #decrease sound volume
+*/}}
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
+{{- if contains "jarvis" .chezmoi.hostname }}
 # MPC player controls
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioStop exec --no-startup-id mpc stop
@@ -255,7 +258,7 @@ set $darkgrey #1d2021
 # finds out, if available)
 bar {
 	# status_command i3status
-	status_command py3status
+	status_command py3status -c .config/py3status/config
 	position top
 	separator_symbol ""
 	# output primary
