@@ -3,11 +3,13 @@
 i3-wm
 i3status
 i3lock-fancy
+dunst
 rofi
 feh
 compton
 parcellite
 xcape
+papirus-icon-theme
 
 # ------------------------------------------------------------------------------
 # Other gui apps

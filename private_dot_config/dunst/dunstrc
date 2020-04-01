@@ -23,7 +23,7 @@
     # https://github.com/knopwob/dunst/issues/26#issuecomment-36159395
     icon_position = right
     # actions/   apps/      devices/   emblems/   emotes/    mimetypes/ status/  
-    icon_folders =  /usr/share/icons/Adwaita/24x24/actions/:/usr/share/icons/Adwaita/24x24/devices/:/usr/share/icons/Adwaita/24x24/status/
+    icon_folders =  /usr/share/icons/Papirus/24x24/actions/:/usr/share/icons/Papirus/24x24/devices/:/usr/share/icons/Papirus/24x24/status/
     frame_width = 1
     frame_color = "#689d68"
 
