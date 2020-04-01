@@ -18,16 +18,17 @@ general {
 {{- if contains "terminal" .chezmoi.hostname }}
 order += "window_title_async"
 order += "scratchpad_async"
-order += "group vpn"
 {{- else }}
 order += "window"
 order += "scratchpad"
 {{- end }}
 # order += "group media"
 order += "backlight"
-order += "group wifi"
 order += "bluetooth"
-{{- if not (contains "terminal" .chezmoi.hostname) }}
+{{- if contains "terminal" .chezmoi.hostname }}
+order += "group network"
+{{- else }}
+order += "group wifi"
 order += "loadavg"
 {{- end }}
 order += "apt_updates"
@@ -37,17 +38,6 @@ order += "clock"
 {{- if contains "terminal" .chezmoi.hostname }}
 window_title_async {}
 scratchpad_async {}
-group vpn {
-	file_status {
-		path = "/proc/sys/net/ipv4/conf/tun0"
-		format = "ST_VPN {icon}"
-	}
-	net_iplist {
-		iface_blacklist = ["wlo1", "eno2", "lo"]
-		format_iface = "{ip4}"
-		format = "{format_iface}"
-	}
-}
 {{- else }}
 window {}
 scratchpad {}
@@ -71,6 +61,34 @@ backlight {
 	format = "☼{level}"
 }
 
+bluetooth {}
+
+{{- if contains "terminal" .chezmoi.hostname }}
+group network {
+	cycle = 30
+	frame {
+		wifi {
+			format = "{icon} {ssid}|W:down"
+			separator = false
+		}
+		file_status {
+			path = "/proc/sys/net/ipv4/conf/tun0"
+			format = "ST_VPN {icon}"
+		}
+	}
+	net_iplist {
+		iface_blacklist = ["eno2", "lo"]
+		format_iface = "{ip4}"
+		format = "{format_iface}"
+		iface_sep = "  "
+	}
+	net_rate {
+		format_value = "[\?min_length=10 {value:.1f}{unit}]"
+		format = "{down}↓ {up}↑"
+		sum_values = true
+	}
+}
+{{- else }}
 group wifi {
 	cycle = 30
 	wifi {
@@ -83,15 +101,6 @@ group wifi {
 	}
 }
 
-bluetooth {}
-
-ethernet _first_ {
-	# if you use %speed, i3status requires root privileges
-	format_up = "E:%ip (%speed)"
-	format_down = "E:down"
-}
-
-{{- if not (contains "terminal" .chezmoi.hostname) }}
 loadavg {
 	format = "{1min} {5min} {15min}"
 }
