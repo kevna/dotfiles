@@ -17,11 +17,12 @@ exec --no-startup-id gnome-flashback &
 exec --no-startup-id parcellite &
 exec --no-startup-id redshift &
 exec --no-startup-id compton &
-exec --no-startup-id bash -c "sleep 5 && ~/.config/i3/keyboard.sh" &
+exec --no-startup-id bash -c "sleep 7 && ~/.config/i3/keyboard.sh" &
 {{- if contains "terminal" .chezmoi.hostname }}
 exec --no-startup-id ~/screens.sh &
 exec --no-startup-id xrdb ~/.Xresources &
 exec --no-startup-id conky &
+exec --no-startup-id ~/.config/i3/workspace1.sh &
 {{- end }}
 
 {{/*
@@ -292,7 +293,9 @@ client.urgent           $alert $alert $darkgrey $purple $alert
 
 {{- if contains "terminal" .chezmoi.hostname }}
 set $background ~/Pictures/background.png
+exec --no-startup-id xsetroot -solid '$bg'
+exec --no-startup-id bash -c "sleep 3 && nitrogen --restore" &
 {{- else }}
 set $background ~/Pictures/pactron.png
-{{- end }}
 exec --no-startup-id feh --bg-max $background --image-bg=$bg &
+{{- end }}

@@ -1,0 +1,137 @@
+// vim:ts=4:sw=4:et
+{
+    // splitv split container with 2 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.3,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1058,
+               "width": 574,
+               "x": 1,
+               "y": 563
+            },
+            "name": "Microsoft Teams",
+            "percent": 0.7,
+            "swallows": [
+               {
+               "class": "^teams\\-for\\-linux$",
+               "instance": "^teams\\-for\\-linux$"
+               // "title": "^Huw\\ Price\\ \\|\\ Microsoft\\ Teams$",
+               // "transient_for": "^$",
+               // "window_role": "^browser\\-window$"
+               }
+            ],
+            "type": "con"
+        }
+        // {
+        //     "border": "pixel",
+        //     "current_border_width": 1,
+        //     "floating": "auto_off",
+        //     "geometry": {
+        //        "height": 1041,
+        //        "width": 1342,
+        //        "x": 0,
+        //        "y": 542
+        //     },
+        //     "name": "https://www.youtube.com - YouTube - Mozilla Firefox",
+        //     "percent": 0.3,
+        //     "swallows": [
+        //        {
+        //        "class": "^Firefox$",
+        //        "instance": "^Navigator$",
+        //        "title": "[Yy]ou[Tt]ube",
+        //        // "title": "^https\\:\\/\\/www\\.youtube\\.com\\ \\-\\ White\\ Squall\\ \\-\\ YouTube\\ \\-\\ Mozilla\\ Firefox$",
+        //        // "transient_for": "^$",
+        //        "window_role": "^browser$"
+        //        }
+        //     ],
+        //     "type": "con"
+        // }
+    ]
+}
+
+{
+    // tabbed split container with 3 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "percent": 0.7,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1042,
+               "width": 1920,
+               "x": 0,
+               "y": 0
+            },
+            "name": "i3: Layout saving in i3 - Mozilla Firefox",
+            "percent": 0.333333333333333,
+            "swallows": [
+               {
+               "class": "^Firefox$",
+               "instance": "^Navigator$",
+               // "title": "^i3\\:\\ Layout\\ saving\\ in\\ i3\\ \\-\\ Mozilla\\ Firefox$",
+               // "transient_for": "^$",
+               "window_role": "^browser$"
+               }
+            ],
+            "type": "con"
+        },
+        // {
+        //     "border": "pixel",
+        //     "current_border_width": 1,
+        //     "floating": "auto_off",
+        //     "geometry": {
+        //        "height": 1041,
+        //        "width": 1341,
+        //        "x": 0,
+        //        "y": 0
+        //     },
+        //     "name": "Volume Control",
+        //     "percent": 0.333333333333333,
+        //     "swallows": [
+        //        {
+        //        "class": "^Pavucontrol$"
+        //        // "instance": "^pavucontrol$",
+        //        // "title": "^Volume\\ Control$",
+        //        // "transient_for": "^$"
+        //        }
+        //     ],
+        //     "type": "con"
+        // },
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 512,
+               "width": 742,
+               "x": 0,
+               "y": 0
+            },
+            "name": "scratchbook.txt",
+            "percent": 0.333333333333333,
+            "swallows": [
+               {
+               "class": "^kitty$",
+               "instance": "^work_scratchbook$"
+               // "title": "^TODO\\.txt\\ \\(\\~\\)\\ \\(\\(1\\)\\ of\\ 2\\)\\ \\-\\ NVIM$",
+               // "transient_for": "^$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

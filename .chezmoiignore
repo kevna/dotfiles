@@ -3,4 +3,6 @@ Makefile
 packages.list
 **/i3status
 {{- if contains "terminal" .chezmoi.hostname }}
+{{- else }}
+**/i3/*workspace*
 {{- end }}
