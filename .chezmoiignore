@@ -5,4 +5,5 @@ packages.list
 {{- if contains "terminal" .chezmoi.hostname }}
 {{- else }}
 **/i3/*workspace*
+**/conky
 {{- end }}
