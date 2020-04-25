@@ -1,5 +1,8 @@
 ### Backend/performance options
 backend = "glx";
+{{- if contains "terminal" .chezmoi.hostname }}
+vsync = "true";
+{{- end }}
 glx-no-stencil = true;
 glx-no-rebind-pixmap = true;
 unredir-if-possible = true;
@@ -8,16 +11,14 @@ xrender-sync-fence = true;
 ### Shadow
 shadow = true;
 shadow-radius = 7;
-shadow-offset-x = -7;
-shadow-offset-y = -7;
+shadow-offset-x = -5;
+shadow-offset-y = -5;
 shadow-opacity = 0.7;
 shadow-exclude = [
     "! name~=''", # ignore elements with no name (eg. i3 titlebars)
     "class_g = 'Firefox' && argb",
     "window_type = 'desktop'",
-{{- if contains "terminal" .chezmoi.hostname }}
-    "!I3_FLOATING_WINDOW@:c", # ignore non-floating windows for i3 (it also ignores tooltips and un-managed windows)
-{{- end }}
+    # "!I3_FLOATING_WINDOW@:c", # ignore non-floating windows for i3 (it also ignores tooltips and un-managed windows) - unneeded for i3-gaps
     "_GTK_FRAME_EXTENTS@:c"
 ];
 

@@ -6,6 +6,9 @@ font pango:monospace 8
 new_window pixel 1
 # new_float normal 1
 hide_edge_borders smart
+{{- if contains "terminal" .chezmoi.hostname }}
+gaps inner 7
+{{- end }}
 
 # Play nice with GNOME
 # rfkill allows managing bluetooth devices from gnome-control-panel
@@ -46,6 +49,8 @@ bindsym XF86AudioPrev exec --no-startup-id mpc prev
 {{- if contains "terminal" .chezmoi.hostname }}
 bindsym $mod+z exec --no-startup-id rofi -show connect
 {{- end }}
+bindsym XF86Calculator exec kitty -o shell python
+bindsym XF86Explorer exec kitty -o shell ranger
 
 # use Mouse+$mod to drag floating windows
 floating_modifier $mod
