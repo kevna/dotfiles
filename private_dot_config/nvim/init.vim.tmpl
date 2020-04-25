@@ -2,7 +2,7 @@
 " we can install plug using this command:
 " curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
 " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'morhetz/gruvbox'		" gruvbox color theme
 Plug 'vim-airline/vim-airline'	" airline status and bufferlines
@@ -27,6 +27,7 @@ call plug#end()
 let g:gruvbox_italic = 1
 let g:gruvbox_undercurl = 1
 let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_light = 'hard'
 
 " -----------------------------------------------------------------------------
 " PLUGIN CONFIG - airline
@@ -62,12 +63,12 @@ set directory=./.backup,.,/tmp backupdir=./.backup,.,/tmp	" directories to try f
 
 " -----------------------------------------------------------------------------
 " setup 'list' (diplay whitespace)
-set list listchars=tab:>\ ,nbsp:%,trail:~,precedes:<,extends:>
-" set listchars=tab:»\ ,nbsp:␣,trail:•,precedes:«,extends:»,eol:¶	" unicode symbols
+" set list listchars=tab:>\ ,nbsp:%,trail:~,precedes:<,extends:>
+set list listchars=tab:▷\ ,nbsp:␣,trail:•,precedes:◀,extends:▶		" unicode symbols
 
 " -----------------------------------------------------------------------------
 " setup wildmenu (filename tab completion)
-"et wildmenu wildmode=list:longest	" wildmenu on (bash mode)
+" set wildmenu wildmode=list:longest	" wildmenu on (bash mode)
 " set wildmode=longest:full		" wildmenu zsh mode
 set wildignore+=*.pyc,*/__pycache__/,*~,*/.svn/	" files to ignore from wildmenu
 
