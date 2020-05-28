@@ -21,6 +21,12 @@
             "percent": 0.7,
             "swallows": [
                {
+               // Official teams (BS)
+               // "class": "^Microsoft Teams",
+               // "instance": "^microsoft teams",
+               // "title": "\\|\\ Microsoft\\ Teams$",
+               // "window_role": "^browser\\-window$"
+               // teams-for linux (marginally better)
                "class": "^teams\\-for\\-linux$",
                "instance": "^teams\\-for\\-linux$"
                // "title": "^Huw\\ Price\\ \\|\\ Microsoft\\ Teams$",
