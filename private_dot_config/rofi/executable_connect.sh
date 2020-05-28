@@ -7,7 +7,7 @@ if [[ -z "$@" ]]; then
 		nmcli con up id ST_VPN >/dev/null &
 	fi
 	# Identify the devbox to connect too
-	printf "10.4.%s.1\n" {2..49} 55 98 99 222
+	printf "10.4.%s.1\n" {2..49} 55 {62..72} 98 99 222
 else
 	# PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
 	# cmd="env EDITOR=vim sudo tmux new -As $sessionname || sudo -i"
