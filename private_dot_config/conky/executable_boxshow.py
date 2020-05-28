@@ -1,9 +1,9 @@
-#!/usr/bin/env python
-import sys
+#!/usr/bin/env python3
+from os.path import expanduser
 import csv
 import re
 
-class BoxStat(object):
+class BoxShow(object):
     MINE = ["26", "27", "28"]
     FAST = ["9", "42", "43", "44", "45"]
     SHARED = ["3", "19", "23", "29", "30"] + FAST
@@ -41,7 +41,7 @@ class BoxStat(object):
     def main(self, wraplen = 105, nonPrintable = re.compile(r"\$\{[^}]+}")):
         results = []
         length = 0
-        with open("~/.config/conky/boxstat.csv", "r") as csvfile:
+        with open(expanduser("~/.config/conky/boxstat.csv"), "r") as csvfile:
             reader = csv.DictReader(csvfile)
             rightSide = False
             for line in reader:
@@ -64,4 +64,5 @@ class BoxStat(object):
 
 
 if __name__ == "__main__":
-    BoxStat().main()
+    BoxShow().main()
+
