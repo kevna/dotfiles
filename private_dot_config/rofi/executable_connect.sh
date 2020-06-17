@@ -14,6 +14,21 @@ else
 	# cmd="sudo bash -li <<< ' export EDITOR=\"vim\" TERM=rxvt-unicode-256color; cd /usr/local/ST; svn st; shortstatus.sh || svn info; exec </dev/tty;'"
 	# cmd="env EDITOR=vim TERM=rxvt-unicode-256color sudo bash -li <<< ' cd /usr/local/ST; shortstatus.sh -v; export PS1=\"\[\a\e[91m\]\u\[\e[90m\]@\[\e[95m\]\h\[\e[90m\]:\[\e[96m\]\w\[\e[91m\]\\\${?#0}\[\e[m\]\\\\$ \"; exec</dev/tty'"
 	# urxvtcd --name "ssh" -e ssh "ops@$@" -ttt "$cmd"
-	cmd="env EDITOR=vim sudo bash -li <<< ' cd /usr/local/ST; clear; shortstatus.py -vc 2>/dev/null || shortstatus.sh -nv; export TERM=xterm-256color COLORTERM=truecolor PROMPT_COMMAND=\"PS_ERR=\\\${?#0}\" PS1=\"\[\a\e[91m\]\u\[\e[90m\]@\[\e[92m\]\h\[\e[90m\]:\[\e[94m\]\w\[\e[91m\]\\\${PS_ERR:-\[\e[92m\]0}\[\e[m\]\\\\$ \"; exec</dev/tty'"
-	coproc (kitty --name "work_ssh$@" -o shell ssh "ops@$@" -ttt "$cmd" &)
+	if [[ "$@" =~ "@" ]]; then
+		user=${@%%@*}
+	else
+		user="ops"
+	fi
+	ip=${@##*@}
+	jump=""
+	shell="bash -li"
+	cmd="export EDITOR=vim TERM=xterm-256color COLORTERM=truecolor PROMPT_COMMAND=\"PS_ERR=\\\${?#0}\" PS1=\"\[\a\e[91m\]\u\[\e[90m\]@\[\e[92m\]\h\[\e[90m\]:\[\e[94m\]\w\[\e[91m\]\\\${PS_ERR:-\[\e[92m\]0}\[\e[m\]\\\\$ \""
+	if [[ "$user" == "ops" ]]; then
+		shell="sudo $shell"
+		cmd="cd /usr/local/ST; clear; shortstatus.py -vc 2>/dev/null || shortstatus.sh -nv; $cmd"
+	fi
+	if [[ "$ip" != 10.4.* ]]; then
+		jump="-J ops@10.4.28.1"
+	fi
+	coproc (kitty --name "work_ssh$ip" -o shell ssh $jump "$user@$ip" -ttt "$shell <<< ' $cmd; exec</dev/tty'" &)
 fi
