@@ -1,7 +1,7 @@
 all: update
 update:
 	chezmoi apply
-	vim -c PlugUpdate -c qa
+	nvim -c PlugUpdate -c qa
 
 install-packages:
 	sudo apt-get install --no-install-recommends $(shell grep -v '^#' packages.list)
