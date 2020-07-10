@@ -7,12 +7,19 @@ if [[ -z "$@" ]]; then
 		nmcli con up id ST_VPN >/dev/null &
 	fi
 	echo -e "\0markup-rows\x1ftrue\n"
-	echo "<tt>10.35.12.193</tt> <span size='smaller' style='italic'>Dev50</span>"
 	# Identify the devbox to connect too
 	# printf "10.4.%s.1\n" {2..49} 55 {62..72} 98 99 222
 	for box in {2..49} 55 {62..72} 98 99 222; do
 		printf "<tt>10.4.%s.1</tt> <span size='smaller' style='italic'>Dev%s</span>\n" $box $box
 	done
+	echo "<tt>10.35.12.193</tt> <span size='smaller' style='italic'>Dev50</span>"
+	echo "<tt>10.4.201.1</tt> <span size='smaller' style='italic'>build1</span>"
+	echo "<tt>10.4.202.1</tt> <span size='smaller' style='italic'>build2</span>"
+	echo "<tt>10.4.203.1</tt> <span size='smaller' style='italic'>build3</span>"
+	echo "<tt>10.4.204.1</tt> <span size='smaller' style='italic'>build4</span>"
+	echo "<tt>10.4.205.1</tt> <span size='smaller' style='italic'>build5</span>"
+	echo "<tt>10.240.5.111</tt> <span size='smaller' style='italic'>build105</span>"
+	echo "<tt>10.240.6.111</tt> <span size='smaller' style='italic'>build106</span>"
 else
 	# PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
 	# cmd="env EDITOR=vim sudo tmux new -As $sessionname || sudo -i"
