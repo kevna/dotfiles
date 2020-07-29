@@ -60,6 +60,8 @@ floating_modifier $mod
 set $term kitty
 bindsym $mod+Return exec $term
 
+for_window [class="Microsoft Teams" window_type="normal"] border pixel 1
+for_window [class="Microsoft Teams" window_type="notification"] floating enable
 {{- if contains "jarvis" .chezmoi.hostname }}
 set $stname scratchterm
 # start a terminal
