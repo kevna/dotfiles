@@ -1,0 +1,5 @@
+# ------------------------------------------------------------------------------
+# py3status and packages for related config
+py3status
+pytz
+tzlocal

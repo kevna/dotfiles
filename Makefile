@@ -4,7 +4,8 @@ update:
 	nvim -c PlugUpdate -c qa
 
 install-packages:
-	sudo apt-get install --no-install-recommends $(shell grep -v '^#' packages.list)
+	pip install $(shell grep -v '^#' pip_packages.list)
+	sudo apt-get install --no-install-recommends $(shell grep -v '^#' apt_packages.list)
 
 update-third-party: \
 	update-plug.vim \

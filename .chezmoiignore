@@ -1,6 +1,6 @@
 README.md
 Makefile
-packages.list
+*_packages.list
 **/i3status
 {{- if contains "terminal" .chezmoi.hostname }}
 {{- else }}
