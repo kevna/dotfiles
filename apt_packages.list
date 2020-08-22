@@ -1,7 +1,6 @@
 # ------------------------------------------------------------------------------
 # i3-wm and packages for related config
 i3-wm
-py3status
 i3lock-fancy
 dunst
 rofi
