@@ -18,7 +18,7 @@ general {
 order += "window"
 order += "scratchpad"
 # order += "group media"
-order += "backlight"
+order += "volume_status"
 order += "bluetooth"
 {{- if contains "terminal" .chezmoi.hostname }}
 order += "group network"
@@ -47,8 +47,10 @@ group media {
 	mpd_status full {}
 }
 
-backlight {
-	format = "☼{level}"
+volume_status {
+	# format_muted = "♩ {percentage}"
+	format = "  <span font_size='larger'>𝄞</span>{percentage}"
+	format_muted = "  <span font_size='larger'>𝄞</span>{percentage}"
 }
 
 bluetooth {}
