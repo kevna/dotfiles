@@ -4,7 +4,7 @@ update:
 	nvim -c PlugUpdate -c qa
 
 install-packages:
-	pip install $(shell grep -v '^#' pip_packages.list)
+	pip3 install $(shell grep -v '^#' pip_packages.list)
 	sudo apt-get install --no-install-recommends $(shell grep -v '^#' apt_packages.list)
 
 update-third-party: \

@@ -15,13 +15,8 @@ general {
 	color_degraded = "#689d68"
 }
 
-{{- if contains "terminal" .chezmoi.hostname }}
-order += "window_title_async"
-order += "scratchpad_async"
-{{- else }}
 order += "window"
 order += "scratchpad"
-{{- end }}
 # order += "group media"
 order += "backlight"
 order += "bluetooth"
@@ -35,13 +30,8 @@ order += "apt_updates"
 order += "battery_level"
 order += "clock"
 
-{{- if contains "terminal" .chezmoi.hostname }}
-window_title_async {}
-scratchpad_async {}
-{{- else }}
 window {}
 scratchpad {}
-{{- end }}
 
 group media {
 	frame {
