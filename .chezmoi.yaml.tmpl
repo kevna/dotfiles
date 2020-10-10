@@ -1,0 +1,7 @@
+data:
+  {{- if contains "terminal" .chezmoi.hostname }}
+  class: "work"
+  {{- else }}
+  class: "personal"
+  {{- end }}
+

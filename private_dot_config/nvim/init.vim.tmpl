@@ -11,7 +11,7 @@ Plug 'mhinz/vim-signify'	" VCS differences apear in gutter (along with some basi
 " Plug 'editorconfig/editorconfig-vim' " editor config is great for collaboration
 " Plug 'w0rp/ale'		" Async Lint Engine
 
-{{- if contains "jarvis" .chezmoi.hostname }}
+{{- if eq .class "personal" }}
 " Experimental plugins we aren't ready for at work yet
 Plug 'machakann/vim-sandwich' " sandwich :S
 

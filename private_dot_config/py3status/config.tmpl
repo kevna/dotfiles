@@ -20,7 +20,7 @@ order += "scratchpad"
 # order += "group media"
 order += "volume_status"
 order += "bluetooth"
-{{- if contains "terminal" .chezmoi.hostname }}
+{{- if eq .class "work" }}
 order += "group network"
 {{- else }}
 order += "group wifi"
@@ -55,7 +55,7 @@ volume_status {
 
 bluetooth {}
 
-{{- if contains "terminal" .chezmoi.hostname }}
+{{- if eq .class "work" }}
 group network {
 	cycle = 30
 	frame {

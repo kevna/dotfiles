@@ -2,8 +2,7 @@ README.md
 Makefile
 *_packages.list
 **/i3status
-{{- if contains "terminal" .chezmoi.hostname }}
-{{- else }}
+{{- if ne .class "work" }}
 **/i3/*workspace*
 **/conky
 {{- end }}

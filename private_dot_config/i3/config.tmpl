@@ -6,7 +6,7 @@ font pango:monospace 8
 new_window pixel 1
 # new_float normal 1
 hide_edge_borders smart
-{{- if contains "terminal" .chezmoi.hostname }}
+{{- if eq .class "work" }}
 gaps inner 7
 {{- end }}
 
@@ -21,7 +21,7 @@ exec --no-startup-id parcellite &
 exec --no-startup-id redshift &
 exec --no-startup-id compton &
 exec --no-startup-id bash -c "sleep 7 && ~/.config/i3/keyboard.sh" &
-{{- if contains "terminal" .chezmoi.hostname }}
+{{- if eq .class "work" }}
 exec --no-startup-id ~/screens.sh &
 exec --no-startup-id xrdb ~/.Xresources &
 exec --no-startup-id conky &
@@ -40,14 +40,14 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_status
-{{- if contains "jarvis" .chezmoi.hostname }}
+{{- if eq .class "personal" }}
 # MPC player controls
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioStop exec --no-startup-id mpc stop
 bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 {{- end }}
-{{- if contains "terminal" .chezmoi.hostname }}
+{{- if eq .class "work" }}
 bindsym $mod+z exec --no-startup-id rofi -show connect
 {{- end }}
 bindsym XF86Calculator exec kitty -o shell python
@@ -65,7 +65,7 @@ for_window [class="Microsoft Teams" window_type="normal"] border pixel 1
 for_window [class="Microsoft Teams" window_type="notification"] floating enable
 for_window [class="Microsoft Teams" window_type="notification"] move to output primary
 no_focus [class="Microsoft Teams" window_type="notification"]
-{{- if contains "jarvis" .chezmoi.hostname }}
+{{- if eq .class "personal" }}
 set $stname scratchterm
 # start a terminal
 #bindsym $mod+Return exec
@@ -221,7 +221,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-{{- if contains "jarvis" .chezmoi.hostname }}
+{{- if eq .class "personal" }}
 mode "move" {
 	# move focused window
 	bindsym h move left
@@ -273,10 +273,6 @@ bar {
 	separator_symbol ""
 	# output primary
 	tray_output primary
-	{{- if contains "jarvis" .chezmoi.hostname }}
-	#mode hide
-	#modifier $mod
-	{{- end }}
 	colors {
 		# bar background color
 		background $bg
@@ -303,7 +299,7 @@ client.urgent           $alert $alert $darkgrey $purple $alert
 
 # end of window decoration section
 
-{{- if contains "terminal" .chezmoi.hostname }}
+{{- if eq .class "work" }}
 set $background ~/Pictures/background.png
 exec --no-startup-id xsetroot -solid '$bg'
 exec --no-startup-id bash -c "sleep 3 && nitrogen --restore" &
