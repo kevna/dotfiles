@@ -1,0 +1,16 @@
+set editing-mode vi
+set show-mode-in-prompt on
+$if term=linux
+	set vi-ins-mode-string \1\e[?0c\2(ins)
+	set vi-cmd-mode-string \1\e[?8c\2(cmd)
+$else
+	set vi-ins-mode-string \1\e[5 q\e[94;1;7m\2 Insert \1\e[27m\2 \1\e[0m\2
+	set vi-cmd-mode-string \1\e[2 q\e[90;1;7m\2 Normal \1\e[27m\2 \1\e[0m\2
+$endif
+
+set show-all-if-ambiguous on
+set colored-stats On
+#set visible-stats On
+set mark-symlinked-directories On
+set colored-completion-prefix On
+
