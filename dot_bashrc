@@ -1,0 +1,40 @@
+# Source the global bashrc so we don't miss any system configuration
+. /etc/bash.bashrc
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Programmable completetion (eg subcommands/args) in case it's not enabled by /etc/bash.bashrc
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# History drops lines starting with space and doesn't store multiple of the same command
+HISTCONTROL=ignoreboth:eraseups
+shopt -s histappend
+
+# Enable '**' glob (recursive *)
+shopt -s globstar
+
+# ensure dircolors are loaded
+if [ -x /usr/bin/dircolors ]; then
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
+fi
+# Aliases to add color to common common commands
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# debian standard ls aliases
+alias ll='ls -halF'
+alias la='ls -A'
+alias l='ls -CF'
+
+PROMPT_COMMAND="PS_ERR=\${?#0}"
+PS1='\[\a\e[32;1m\]\u@\h\[\e[m\]:\[\e[94m\]\w \[\e[91;1m\]${PS_ERR:-\[\e[92;1m\]0}\[\e[m\]\$ '
+
