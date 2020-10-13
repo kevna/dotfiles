@@ -1,0 +1,13 @@
+[user]
+	name = "{{ .name }}"
+	email = "{{ .email }}"
+
+[pull]
+	ff = only
+
+[push]
+	default = simple
+
+[rerere] # reuse the manual merging on identical chunks
+	enabled = 1
+	autoupdate = 1
