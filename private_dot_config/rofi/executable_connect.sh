@@ -13,6 +13,7 @@ if [[ -z "$@" ]]; then
 		printf "<tt>10.4.%s.1</tt> <span size='smaller' style='italic'>Dev%s</span>\n" $box $box
 	done
 	echo "<tt>10.35.12.193</tt> <span size='smaller' style='italic'>Dev50</span>"
+	echo "<tt>10.35.12.235</tt> <span size='smaller' style='italic'>Dev51</span>"
 	echo "<tt>10.4.201.1</tt> <span size='smaller' style='italic'>build1</span>"
 	echo "<tt>10.4.202.1</tt> <span size='smaller' style='italic'>build2</span>"
 	echo "<tt>10.4.203.1</tt> <span size='smaller' style='italic'>build3</span>"
