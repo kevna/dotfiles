@@ -35,6 +35,15 @@ alias ll='ls -halF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias cg='cd `git rev-parse --show-toplevel`'
+function czedit() {
+	local CZ=$(chezmoi source-path $1)
+	nvim -d $1 $CZ
+}
+function swd() {
+	echo "${1:-$PWD}" | sed "s|$HOME|~|g" | sed -r 's|(\W*\w)[^/]+/|\1/|g'
+}
+
 PROMPT_COMMAND="PS_ERR=\${?#0}"
-PS1='\[\a\e[32;1m\]\u@\h\[\e[m\]:\[\e[94m\]\w \[\e[91;1m\]${PS_ERR:-\[\e[92;1m\]0}\[\e[m\]\$ '
+PS1='\[\a\e[32;1m\]\u@\h\[\e[m\]:\[\e[94m\]$(swd)\[\e[m\]$(gitline.sh) \[\e[91;1m\]${PS_ERR:-\[\e[92;1m\]0}\[\e[m\]\$ '
 
