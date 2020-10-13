@@ -1,17 +1,17 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 if test -d .git || git rev-parse --git-dir >/dev/null 2>&1; then
 	branch="$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)"
-	echo -n "$branch"
+	echo -n " $branch"
 
-	ahead="$(git rev-list @{u}..HEAD | wc -l)"
-	behind="$(git rev-list HEAD..@{u} | wc -l)"
+	ahead="$(git rev-list @{u}..HEAD 2>/dev/null | wc -l)"
+	behind="$(git rev-list HEAD..@{u} 2>/dev/null | wc -l)"
 	if [ $ahead -gt 0 ] && [ $behind -gt 0 ]; then
-		echo -n "\e[91;7m🡙$(($ahead + $behind))\e[m"
+		echo -n "\e[91;7m↕$(($ahead + $behind))\e[m"
 	elif [ $ahead -gt 0 ]; then
-		echo -n "🡑$ahead"
+		echo -n "↑$ahead"
 	elif [ $behind -gt 0 ]; then
-		echo -n "🡓$behind"
+		echo -n "↓$behind"
 	fi
 
 	status="$(git status --porcelain)"
