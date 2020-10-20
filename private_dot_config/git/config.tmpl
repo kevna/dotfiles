@@ -2,6 +2,18 @@
 	name = "{{ .name }}"
 	email = "{{ .email }}"
 
+[core]
+	editor = nvim
+	excludesfile = ~/.config/git/ignore
+
+[diff]
+	relative = true
+	colorMoved = dimmed-zebra
+	colorMovedWs = ignore-space-change
+
+[fetch]
+	prune = true
+
 [pull]
 	ff = only
 
