@@ -100,6 +100,14 @@ if $COLORTERM =~? '\vtruecolor'
 endif
 
 " -----------------------------------------------------------------------------
+
+augroup ftcolorcolumn
+	autocmd!
+	autocmd FileType gitcommit setlocal colorcolumn=51,73
+	autocmd FileType python setlocal colorcolumn=81
+augroup END
+
+" -----------------------------------------------------------------------------
 " maps using leader
 let mapleader = ","
 map <silent> <leader>p		:set paste! list!<CR>
