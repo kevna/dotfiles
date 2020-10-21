@@ -149,6 +149,18 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
+{{- if .experimentalconfig }}
+# bindsym $mod+m exec i3-input -F 'mark --toggle %s' -l 1 -P 'Mark: '
+bindsym $mod+p title_format "Share | %title"
+bindsym $mod+o title_format "%title"
+# read 1 character and mark the current window with this character
+bindsym $mod+m exec i3-input -F 'mark --toggle %s' -l 1 -P 'Mark: '
+
+# read 1 character and go to the window with the character
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+show_marks true
+{{- end }}
+
 set $ws1 "01"
 set $ws2 "02"
 set $ws3 "03"
