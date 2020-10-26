@@ -1,0 +1,13 @@
+function _gitcd() {
+	_cd $@
+	local root=$(git rev-parse --show-toplevel 2>/dev/null)
+	local completing="${COMP_WORDS[COMP_CWORD]}"
+	if [ "$completing" != "" ]; then
+		COMPREPLY+=($(find $root -maxdepth 1 -type d -name "$completing*" 2>/dev/null | sed "s|^$HOME|~|"))
+	else
+		COMPREPLY+=($(echo $root | sed "s|^$HOME|~|"))
+	fi
+	return 0
+}
+complete -o nospace -o filenames -F _gitcd cd pushd
+
