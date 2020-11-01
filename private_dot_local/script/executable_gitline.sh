@@ -14,16 +14,18 @@ if test -d .git || git rev-parse --git-dir >/dev/null 2>&1; then
 		echo -n "↓$behind"
 	fi
 
-	status="$(git status --porcelain)"
-	if [ "$status" != "" ]; then
+	# appending "." prevents an ending newline being stripped
+	# this makes ou untracked calculation simpler
+	status="$(git status --porcelain && echo '.')"
+	if [ "$status" != "." ]; then
 		echo -n "("
 		len="$(echo "$status" | wc -l)"
 		status="$(echo "$status" | grep -v '^??')"
 		untracked="$(($len - $(echo "$status" | wc -l)))"
 
 		if [ "$status" != "" ]; then
-			staged="$(echo "$status" | grep '^[^? ]' | wc -l)"
-			unstaged="$(echo "$status" | grep '^.[^? ]' | wc -l)"
+			staged="$(echo "$status" | grep '^\w' | wc -l)"
+			unstaged="$(echo "$status" | grep '^.\w' | wc -l)"
 			echo -n "\e[32m${staged#0}\e[31m${unstaged#0}"
 		fi
 		echo -n "\e[90m${untracked#0}\e[m)"
