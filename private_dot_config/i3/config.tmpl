@@ -81,8 +81,8 @@ for_window [instance="$stname"] resize set height 350
 for_window [instance="$stname"] move to scratchpad
 {{- end }}
 
-for_window [class="Firefox-esr" instance="Toolkit "title="Picture-in-Picture"] sticky enable
-for_window [class="Firefox-esr" instance="Toolkit" title="Picture-in-Picture"] border none
+for_window [class="^Firefox" instance="Toolkit "title="Picture-in-Picture"] sticky enable
+for_window [class="^Firefox" instance="Toolkit" title="Picture-in-Picture"] border none
 
 bindsym $mod+equal sticky toggle
 
