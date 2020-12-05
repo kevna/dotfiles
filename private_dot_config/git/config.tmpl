@@ -1,26 +1,30 @@
 {{- /* vim: set ft=gitconfig : */ -}}
 [user]
-	name = "{{ .name }}"
-	email = "{{ .email }}"
+name = "{{ .name }}"
+email = "{{ .email }}"
 
 [core]
-	editor = nvim
-	excludesfile = ~/.config/git/ignore
+editor = nvim
+excludesfile = ~/.config/git/ignore
 
 [diff]
-	relative = true
-	colorMoved = dimmed-zebra
-	colorMovedWs = ignore-space-change
+relative = true
+{{- if contains "terminal" .chezmoi.hostname }}
+colorMoved = dimmed_zebra
+{{- else }}
+colorMoved = dimmed-zebra
+{{- end }}
+colorMovedWs = ignore-space-change
 
 [fetch]
-	prune = true
+prune = true
 
 [pull]
-	ff = only
+ff = only
 
 [push]
-	default = simple
+default = simple
 
 [rerere] # reuse the manual merging on identical chunks
-	enabled = 1
-	autoupdate = 1
+enabled = 1
+autoupdate = 1
