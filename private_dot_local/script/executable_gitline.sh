@@ -31,7 +31,7 @@ if test -d .git || git rev-parse --git-dir >/dev/null 2>&1; then
 		echo -n "\e[90m${untracked#0}\e[m)"
 	fi
 
-	stash="$(git stash list --porcelain | wc -l)"
+	stash="$(git stash list | wc -l)"
 	if [ "$stash" -gt 0 ]; then
 		echo -n "{${stash}}"
 	fi
