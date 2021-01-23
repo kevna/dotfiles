@@ -32,7 +32,9 @@ order += "battery_level"
 order += "clock"
 
 window {}
-scratchpad {}
+scratchpad {
+	format = "[\?not_zero ⌫ [\?color=scratchpad {scratchpad}]]"
+}
 
 group media {
 	frame {
@@ -50,8 +52,8 @@ group media {
 
 volume_status {
 	# format_muted = "♩ {percentage}"
-	format = "  <span font_size='larger'>𝄞</span>{percentage}"
-	format_muted = "  <span font_size='larger'>𝄞</span>{percentage}"
+	format = "<span font_size='larger'>𝄞</span>{percentage}"
+	format_muted = "<span font_size='larger'>𝄞</span>{percentage}"
 }
 
 bluetooth {}
