@@ -9,11 +9,7 @@ excludesfile = ~/.config/git/ignore
 
 [diff]
 relative = true
-{{- if contains "terminal" .chezmoi.hostname }}
-colorMoved = dimmed_zebra
-{{- else }}
 colorMoved = dimmed-zebra
-{{- end }}
 colorMovedWs = ignore-space-change
 
 [fetch]
