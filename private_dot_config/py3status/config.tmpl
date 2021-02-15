@@ -72,7 +72,7 @@ group network {
 		}
 	}
 	net_iplist {
-		iface_blacklist = ["eno2", "lo"]
+		iface_blacklist = ["eno2", "lo", "br-*"]
 		format_iface = "{ip4}"
 		format = "{format_iface}"
 		iface_sep = "  "
