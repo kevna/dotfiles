@@ -10,7 +10,7 @@ Plug 'vim-airline/vim-airline'	" airline status and bufferlines
 Plug 'mhinz/vim-signify'	" VCS differences apear in gutter (along with some basic tools)
 " Plug 'tpope/vim-fugitive'	" more extensive git support
 " Plug 'editorconfig/editorconfig-vim' " editor config is great for collaboration
-" Plug 'w0rp/ale'		" Async Lint Engine
+Plug 'dense-analysis/ale'	" Async Lint Engine
 
 {{- if eq .class "personal" }}
 " Experimental plugins we aren't ready for at work yet
@@ -44,8 +44,9 @@ endif
 " PLUGIN CONFIG - ale
 " let g:ale_fixers = {'typescript': ['prettier', 'tslint', 'tslint']}
 " let g:ale_fix_on_save = 1
-" let g:ale_sign_error = '✘'
-" let g:ale_sign_warning = '●'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '●'
+let g:ale_python_auto_pipenv = 1
 
 " =============================================================================
 " Config Proper
