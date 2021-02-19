@@ -47,6 +47,10 @@ endif
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '●'
 let g:ale_python_auto_pipenv = 1
+{{- if eq .class "work" }}
+let g:ale_python_pylint_options = '--rcfile .cicd_scripts/static_analysis/config/pylintrc'
+let g:ale_python_mypy_options = '--config-file .cicd_scripts/static_analysis/config/mypy.ini'
+{{- end }}
 
 " =============================================================================
 " Config Proper
