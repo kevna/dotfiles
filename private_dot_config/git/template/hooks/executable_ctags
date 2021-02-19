@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+PATH="/usr/local/bin:$PATH"
+tmpfile=".git/tags.$$"
+trap 'rm -f "$tmpfile"' EXIT
+git ls-files | \
+  ctags --tag-relative -L - -f"$tmpfile" --languages=-javascript,sql
+mv "$tmpfile" ".git/tags"
