@@ -17,6 +17,10 @@ excludesfile = ~/.config/git/ignore
 relative = true
 colorMoved = dimmed-zebra
 colorMovedWs = ignore-space-change
+tool = nvim
+
+[difftool "nvim"]
+cmd = nvim -d "$LOCAL" "$REMOTE"
 
 [fetch]
 prune = true
