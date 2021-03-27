@@ -13,8 +13,12 @@ templatedir = ~/.config/git/template
 editor = nvim
 excludesfile = ~/.config/git/ignore
 
+[column]
+ui = auto,row
+
 [diff]
 relative = true
+noprefix = true
 colorMoved = dimmed-zebra
 colorMovedWs = ignore-space-change
 tool = nvim
@@ -30,6 +34,11 @@ ff = only
 
 [push]
 default = simple
+# this doesn't force, just checks that we have the changes we're overwriting
+useForceIfIncludes = true
+
+[rebase]
+missingCommitsCheck = error
 
 [rerere] # reuse the manual merging on identical chunks
 enabled = 1
