@@ -11,10 +11,12 @@ Plug 'mhinz/vim-signify'	" VCS differences apear in gutter (along with some basi
 " Plug 'tpope/vim-fugitive'	" more extensive git support
 " Plug 'editorconfig/editorconfig-vim' " editor config is great for collaboration
 Plug 'dense-analysis/ale'	" Async Lint Engine
+Plug 'Yggdroot/indentLine'	" show levels of indentation
+Plug 'cespare/vim-toml'		" toml syntax
 
 {{- if eq .class "personal" }}
 " Experimental plugins we aren't ready for at work yet
-Plug 'machakann/vim-sandwich' " sandwich :S
+Plug 'machakann/vim-sandwich'	" sandwich :S
 
 " These can be used to run unittest from within vim
 "Plug 'janko/vim-test'
@@ -52,13 +54,18 @@ let g:ale_python_pylint_options = '--rcfile .cicd_scripts/static_analysis/config
 let g:ale_python_mypy_options = '--config-file .cicd_scripts/static_analysis/config/mypy.ini'
 {{- end }}
 
+" -----------------------------------------------------------------------------
+" PLUGIN CONFIG - ale
+let g:indentLine_char = '▏'
+
 " =============================================================================
 " Config Proper
 set title			" set the teminal title (useful for identiying open terminals)
 "set cursorline			" show line of cursor
 set lazyredraw			" only redraw when neccessary
 set tags^=.git/tags		" look for tags file in the .git directory
-set scrolloff=9 sidescrolloff=1	" padding for vertical and horizontal scroll
+set scrolloff=9 sidescrolloff=5	" padding for vertical and horizontal scroll
+set nowrap			" turn off line wrap
 set hidden			" allow hiding buffers (can open a new buffer without writing)
 set ignorecase smartcase	" search is only case sensetive if searchstring contains caps
 "set omnifunc=syntaxcomplete#Complete	" turn on omni complete (use ^X^O to activate)
@@ -113,11 +120,12 @@ augroup ftcolorcolumn
 	autocmd FileType gitcommit setlocal colorcolumn=51,73
 	autocmd FileType python setlocal colorcolumn=81
 augroup END
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " -----------------------------------------------------------------------------
 " maps using leader
 let mapleader = ","
-map <silent> <leader>p		:set paste! list!<CR>
+map <silent> <leader>p		:set paste! list! <bar> IndentLinesToggle<CR>
 map <silent> <leader>l		:call LightSwitch()<CR>
 map <silent> <leader>s		:set spell!<CR>
 
