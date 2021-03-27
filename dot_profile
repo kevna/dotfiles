@@ -5,9 +5,8 @@
 #umask 022
 
 # set PATH so it includes user's private bin if it exists
-PATH="~/.local/bin:~/.local/script:$PATH"
+export PATH="~/.local/bin:~/.local/script:$PATH:~/.poetry/bin"
 
 # Default tools to use
 TERMINAL=kitty
 EDITOR=nvim
-
