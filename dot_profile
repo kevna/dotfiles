@@ -5,7 +5,7 @@
 #umask 022
 
 # set PATH so it includes user's private bin if it exists
-export PATH="~/.local/bin:~/.local/script:$PATH:~/.poetry/bin"
+export PATH="$HOME/.local/bin:$HOME/.local/script:$HOME/.poetry/bin:$PATH"
 
 # Default tools to use
 TERMINAL=kitty
