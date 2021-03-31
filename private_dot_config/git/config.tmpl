@@ -26,6 +26,10 @@ tool = nvim
 [difftool "nvim"]
 cmd = nvim -d "$LOCAL" "$REMOTE"
 
+[difftool "kitty"]
+cmd = kitty +kitten diff "$LOCAL" "$REMOTE"
+prompt = false
+
 [fetch]
 prune = true
 
@@ -46,3 +50,4 @@ autoupdate = 1
 
 [alias]
 ctags = !.git/hooks/ctags
+diffk = difftool --tool=kitty --no-symlinks --dir-diff
