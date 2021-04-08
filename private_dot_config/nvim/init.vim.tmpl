@@ -18,6 +18,7 @@ Plug 'cespare/vim-toml'		" toml syntax
 " Experimental plugins we aren't ready for at work yet
 Plug 'machakann/vim-sandwich'	" sandwich :S
 Plug 'sheerun/vim-polyglot'	" extensive language support
+Plug 'junegunn/fzf'
 
 " These can be used to run unittest from within vim
 "Plug 'janko/vim-test'
@@ -83,9 +84,8 @@ set list listchars=tab:▷\ ,nbsp:␣,trail:•,precedes:◀,extends:▶		" unic
 
 " -----------------------------------------------------------------------------
 " setup wildmenu (filename tab completion)
-" set wildmenu wildmode=list:longest	" wildmenu on (bash mode)
-" set wildmode=longest:full		" wildmenu zsh mode
-set wildignore+=*.pyc,*/__pycache__/,*~,*/.svn/	" files to ignore from wildmenu
+set path+=**	" search subdirs when using :find
+set wildignore+=*.pyc,*/__pycache__/,*~,.git/,.venv/,*_build	" files to ignore from wildmenu
 
 " -----------------------------------------------------------------------------
 " setup folding (hiding code sections)

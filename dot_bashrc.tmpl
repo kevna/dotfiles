@@ -49,6 +49,7 @@ function _shortwd() {
 }
 
 EDITOR="nvim"
+FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 
 PROMPT_COMMAND="PS_ERR=\${?#0}"
 {{/* PS1='\[\a\e[32;1m\]\u@\h\[\e[m\]:\[\e[94m\]$(_shortwd)\[\e[m\]$(gitline.sh) \[\e[91;1m\]${PS_ERR:-\[\e[92;1m\]0}\[\e[m\]\$ ' */}}
