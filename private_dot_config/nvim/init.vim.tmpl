@@ -1,4 +1,7 @@
 {{- /* vim: set ft=vim : */ -}}
+" need to disable this before we actually Plug polygot
+let g:polyglot_disabled = ['sensible']
+
 " vim-plug
 " we can install plug using this command:
 " curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
@@ -12,12 +15,11 @@ Plug 'mhinz/vim-signify'	" VCS differences apear in gutter (along with some basi
 " Plug 'editorconfig/editorconfig-vim' " editor config is great for collaboration
 Plug 'dense-analysis/ale'	" Async Lint Engine
 Plug 'Yggdroot/indentLine'	" show levels of indentation
-Plug 'cespare/vim-toml'		" toml syntax
+Plug 'sheerun/vim-polyglot'	" extensive language support
 
 {{- if eq .class "personal" }}
 " Experimental plugins we aren't ready for at work yet
 Plug 'machakann/vim-sandwich'	" sandwich :S
-Plug 'sheerun/vim-polyglot'	" extensive language support
 Plug 'junegunn/fzf'
 
 " These can be used to run unittest from within vim
@@ -70,7 +72,7 @@ set scrolloff=9 sidescrolloff=5	" padding for vertical and horizontal scroll
 set nowrap			" turn off line wrap
 set hidden			" allow hiding buffers (can open a new buffer without writing)
 set ignorecase smartcase	" search is only case sensetive if searchstring contains caps
-"set omnifunc=syntaxcomplete#Complete	" turn on omni complete (use ^X^O to activate)
+set nohlsearch			" don't highlight search results once locked in
 
 " -----------------------------------------------------------------------------
 " place backup files
@@ -121,11 +123,11 @@ augroup ftcolorcolumn
 	autocmd FileType gitcommit setlocal colorcolumn=51,73
 	autocmd FileType python setlocal colorcolumn=81
 augroup END
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " -----------------------------------------------------------------------------
 " maps using leader
-let mapleader = ","
+let mapleader = " "
 map <silent> <leader>p		:set paste! list! <bar> IndentLinesToggle<CR>
 map <silent> <leader>l		:call LightSwitch()<CR>
 map <silent> <leader>s		:set spell!<CR>
@@ -142,7 +144,6 @@ endfunction
 " -----------------------------------------------------------------------------
 " 'normal' mode keymaps
 nmap <silent> <backspace>	:nohlsearch<CR>
-nmap <silent> <space>		za
 
 " -----------------------------------------------------------------------------
 " terminal mode keymaps
