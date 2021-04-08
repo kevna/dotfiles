@@ -1,1 +1,4 @@
-.*.sw[pon]
+# Git ignores this automaticaly, but this is convenient for other tools which use .gitignore like ag
+.git/
+
+.*.sw[a-p]
