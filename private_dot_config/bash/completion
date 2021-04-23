@@ -13,3 +13,24 @@ function _gitcd() {
 }
 complete -o nospace -o filenames -F _gitcd cd pushd
 
+function _make() {
+	local completing="${COMP_WORDS[COMP_CWORD]}"
+	if [ -f 'Makefile' ]; then
+		local database="$(cat 'Makefile')"
+	else
+		local database="$(make -qp)"
+	fi
+	local patterns=($(echo "$database" | sed -n -E 's/^([^.#][^:=]*)(:$|:\s+.*$)/\1/p' | sort -u))
+	for pattern in ${patterns[@]}; do
+		if [[ "$pattern" == *"%"* ]]; then
+			# Putting this on a temporary list lets us have the basic target names first
+			local globs+=($(compgen -G "${pattern/\%/**/*}" | grep "^$completing"))
+		elif [[ "$pattern" == "$completing"* ]]; then
+			COMPREPLY+=($pattern)
+		fi
+	done
+	# Filter out the duplicates that matched multiple patterns
+	COMPREPLY+=($(printf '%s\n' "${globs[@]}" | sort -u))
+	return 0
+}
+complete -o nosort -F _make make
