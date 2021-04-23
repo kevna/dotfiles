@@ -1,13 +1,10 @@
 # ------------------------------------------------------------------------------
-# i3-wm and packages for related config
-i3-wm
-i3lock-fancy
-dunst
-rofi
-feh
-compton
+# swaywm (i3 wayland) and packages for related config
+sway
+swaylock
+mako
+wofi
 parcellite
-xcape
 papirus-icon-theme
 
 # ------------------------------------------------------------------------------
@@ -17,6 +14,7 @@ rxvt-unicode
 zathura
 inkscape
 pavucontrol
+feh
 # gpick
 
 # ------------------------------------------------------------------------------
