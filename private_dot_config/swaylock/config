@@ -1,0 +1,38 @@
+ignore-empty-password
+show-failed-attempts
+indicator-caps-lock
+
+font=monospace
+
+indicator-radius=100
+
+color=282828
+separator-color=1d2021cc
+
+# Outline on either side of the ring
+line-uses-inside
+
+# background colour within the ring
+inside-color=1d2021cc
+inside-caps-lock-color=1d2021cc
+inside-clear-color=1d2021cc
+inside-ver-color=1d2021cc
+inside-wrong-color=1d2021cc
+
+# The keypress marker on the ring
+key-hl-color=98971a
+bs-hl-color=cc241d
+caps-lock-key-hl-color=98971a
+caps-lock-bs-hl-color=cc241d
+
+ring-color=282828
+ring-caps-lock-color=689d6a
+ring-clear-color=d65d0e
+ring-ver-color=458588
+ring-wrong-color=cc241d
+
+text-color=ebdbb2
+text-caps-lock-color=8ec07c
+text-clear-color=fe8019
+text-ver-color=83a598
+text-wrong-color=fb4934
