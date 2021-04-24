@@ -1,0 +1,12 @@
+#font = monospace 8
+background-color=#282828
+text-color=#ebdbb2
+border-color=#458588
+progress-color=over #458588
+# actions/   apps/      devices/   emblems/   emotes/    mimetypes/ status/  
+icon-path=/usr/share/icons/Papirus/24x24/actions/:/usr/share/icons/Papirus/24x24/devices/:/usr/share/icons/Papirus/24x24/status/
+default-timeout=10000
+group-by=app-name,app-icon,urgency,category
+
+[grouped]
+format=<b>%s</b>\n%b\n<small>%g more from %a</small>
