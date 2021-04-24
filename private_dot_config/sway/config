@@ -1,0 +1,290 @@
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+font pango:monospace 8
+default_border pixel 1
+hide_edge_borders --i3 smart
+smart_borders on
+gaps inner 7
+
+# Play nice with GNOME
+# rfkill allows managing bluetooth devices from gnome-control-panel
+# exec --no-startup-id {
+# 	/usr/lib/gnome-settings-daemon/gsd-rfkill &
+# 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# 	gnome-flashback &
+# }
+
+exec --no-startup-id {
+	mako &
+	parcellite &
+	# redshift &
+}
+
+set $refresh_status killall -SIGUSR1 py3status
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_status
+# MPC player controls
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioStop exec --no-startup-id mpc stop
+bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+bindsym XF86Calculator exec kitty -o shell python
+bindsym XF86Explorer exec kitty -o shell ranger
+
+# use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# terminal (default i3-sensible-terminal)
+
+set $term kitty
+bindsym $mod+Return exec $term
+
+for_window [class="Microsoft Teams" window_type="normal"] border pixel 1
+for_window [class="Microsoft Teams" window_type="notification"] floating enable
+for_window [class="Microsoft Teams" window_type="notification"] move to output primary
+no_focus [class="Microsoft Teams" window_type="notification"]
+set $stname scratchterm
+# start a terminal
+#bindsym $mod+Return exec
+bindsym XF86Launch1 exec --no-startup-id i3-msg '[instance="$stname"] scratchpad show' 2>/dev/null | grep -q true || (($term --class $stname &) && sleep 0.3 && i3-msg '[instance="$stname"] scratchpad show')
+# bindsym F12 exec ~/.$stname/$stname
+
+for_window [instance="$stname"] border none
+for_window [instance="$stname"] floating enable
+for_window [instance="$stname"] sticky enable
+for_window [instance="$stname"] move absolute position 230 16
+for_window [instance="$stname"] resize set width 900
+for_window [instance="$stname"] resize set height 350
+for_window [instance="$stname"] move to scratchpad
+
+for_window [class="^Firefox" instance="Toolkit "title="Picture-in-Picture"] sticky enable
+for_window [class="^Firefox" instance="Toolkit" title="Picture-in-Picture"] border none
+
+bindsym $mod+equal sticky toggle
+
+# warp to urgent window
+bindsym $mod+u [urgent="latest"] focus
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# rofi program launcher (formerly dmenu)
+bindsym $mod+d exec wofi --show drun,run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+# Split in the opposite direction to last (can then be swapped with $mod+e above if needed)
+bindsym $mod+t split toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent/child container
+bindsym $mod+a focus parent
+# bindsym $mod+d focus child # Replaced with dmenu/rofi
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+# bindsym $mod+m exec i3-input -F 'mark --toggle %s' -l 1 -P 'Mark: '
+bindsym $mod+p title_format "Share | %title"
+bindsym $mod+o title_format "%title"
+# read 1 character and mark the current window with this character
+bindsym $mod+m exec i3-input -F 'mark --toggle %s' -l 1 -P 'Mark: '
+
+# read 1 character and go to the window with the character
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+show_marks true
+
+set $ws1 "01"
+set $ws2 "02"
+set $ws3 "03"
+set $ws4 "04"
+set $ws5 "05"
+set $ws6 "06"
+set $ws7 "07"
+set $ws8 "08"
+set $ws9 "09"
+set $ws0 "10"
+# set $out1 "eDP-1"
+# set $out2 "DP-2"
+# workspace $ws1 output $out1
+# workspace $ws0 output $out2
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws0
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your wayland session.' -b 'Yes, exit sway' 'swaymsg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+	# These bindings trigger as soon as you enter the resize mode
+
+	# Pressing left will shrink the window’s width.
+	# Pressing right will grow the window’s width.
+	# Pressing up will shrink the window’s height.
+	# Pressing down will grow the window’s height.
+	bindsym h resize shrink width 10 px or 10 ppt
+	bindsym j resize grow height 10 px or 10 ppt
+	bindsym k resize shrink height 10 px or 10 ppt
+	bindsym l resize grow width 10 px or 10 ppt
+
+	# same bindings, but for the arrow keys
+	bindsym Left	resize shrink width 10 px or 10 ppt
+	bindsym Down	resize grow height 10 px or 10 ppt
+	bindsym Up	resize shrink height 10 px or 10 ppt
+	bindsym Right	resize grow width 10 px or 10 ppt
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+#######################
+# i3 WM GRUVBOX THEME #
+#######################
+# inspired by https://github.com/a-schaefers/i3-wm-gruvbox-theme
+
+# set primary gruvbox colorscheme colors
+set $bg #282828
+set $fg #fbf1c7
+set $alert #d65d0e
+set $white #ebdbb2
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $grey #a89984
+set $darkgrey #1d2021
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+	# status_command i3status
+	# ~/.local/bin is the default install path for pip run as the local user
+	# setting PATH this way means local bin will be picked up first then global ones
+	status_command PATH=~/.local/bin/:$PATH py3status -c .config/py3status/config
+	position top
+	separator_symbol ""
+	# output primary
+	# tray_output primary
+	height 20
+	colors {
+		# bar background color
+		background $bg
+		# text color used for blocks that do not have a color specified.
+		statusline $white
+		separator $purple
+		# workspaces section
+		#                       border  backgr. text
+		focused_workspace	$aqua $aqua $darkgrey
+		inactive_workspace	$bg $bg $white
+		active_workspace	$bg $bg $aqua
+		urgent_workspace	$alert $alert $darkgrey
+		binding_mode		$red $red $darkgrey
+	}
+}
+
+# window decoration theme
+
+# class                 border|backgr|text|indicator|child_border
+client.focused          $blue $blue $darkgrey $purple $blue
+client.focused_inactive $bg $bg $blue $purple $bg
+client.unfocused        $bg $bg $white $purple $bg
+client.urgent           $alert $alert $darkgrey $purple $alert
+
+# end of window decoration section
+set $background ~/Pictures/pactron.png
+output * background $background fill $bg
+
+# lock screen
+set $lock swaylock -i $background
+bindsym $mod+BackSpace exec --no-startup-id $lock
+
+input * xkb_layout gb
+input "1149:8264:Primax_Kensington_Eagle_Trackball" {
+	scroll_method on_button_down
+	scroll_button button3
+}
+input "1133:50184:Logitech_USB_Trackball" {
+	accel_profile adaptive
+	pointer_accel 1
+	scroll_method on_button_down
+	scroll_button button8
+	# button_mapping "1 2 3 4 5 6 7 9 8"
+}
