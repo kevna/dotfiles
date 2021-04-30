@@ -268,6 +268,13 @@ client.focused_inactive $bg $bg $blue $purple $bg
 client.unfocused        $bg $bg $white $purple $bg
 client.urgent           $alert $alert $darkgrey $purple $alert
 
+seat seat0 xcursor_theme 'oxy-norway'
+exec_always {
+	gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
+	gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+	gsettings set org.gnome.desktop.interface cursor-theme 'oxy-norway'
+}
+
 # end of window decoration section
 set $background ~/Pictures/pactron.png
 output * background $background fill $bg
