@@ -52,5 +52,5 @@ autoupdate = 1
 guessRemote=true
 
 [alias]
-ctags = !.git/hooks/ctags
+ctags = !$(git rev-parse --git-path hooks)/ctags
 diffk = difftool --tool=kitty --no-symlinks --dir-diff
