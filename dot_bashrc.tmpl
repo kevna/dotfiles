@@ -48,6 +48,42 @@ function czedit() {
 function _shortwd() {
 	echo "${1:-$PWD}" | sed "s|^$HOME|~|" | sed -r 's|(\W*\w)[^/]+/|\1/|g'
 }
+function _worktree_list() {
+	if [ -z $1 ]; then
+		git worktree list
+	else
+		git worktree list | awk '/'"$1"'/ {print $1}' | head -n 1
+	fi
+}
+function wt() {
+	# Switch between git worktrees with ease.
+	# loosely inspired by https://github.com/yankeexe/git-worktree-switcher
+	local directory=
+	if [ -z $1 ] || [ $1 == "list" ]; then
+		worktree_list
+		return 0
+	elif [ $1 == "add" ]; then
+		if [ -z $2 ]; then
+			return 128
+		fi
+		# Create a new worktree parallel to the first worktree (master or bare)
+		# ie. from a branchname make repo/branchname (with subdirs for feeature/)
+		directory=$(dirname $(worktree_list '\/'))/$2
+		git worktree add "$directory" "$2"
+	elif [ $1 == "-" ]; then
+		# Emulate behaviour of cd -
+		directory=$OLDWT
+	else
+		directory=$(worktree_list "$1")
+	fi
+	if [ $PWD != $directory ] && [ -d $directory ]; then
+		OLDWT=$PWD
+		cd $directory
+		return 0
+	fi
+	return 128
+}
+
 
 EDITOR="nvim"
 export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
