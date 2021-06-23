@@ -21,6 +21,8 @@ Plug 'sheerun/vim-polyglot'	" extensive language support
 " Experimental plugins we aren't ready for at work yet
 Plug 'machakann/vim-sandwich'	" sandwich :S
 Plug 'junegunn/fzf'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 " These can be used to run unittest from within vim
 "Plug 'janko/vim-test'
@@ -61,6 +63,7 @@ let g:ale_python_mypy_options = '--config-file .cicd_scripts/static_analysis/con
 " -----------------------------------------------------------------------------
 " PLUGIN CONFIG - misc
 let g:indentLine_char = '▏'
+let g:fzf_options = '--preview "pygmentize -O style=gruvbox-dark {}"'
 
 " =============================================================================
 " Config Proper
@@ -126,6 +129,11 @@ augroup ftcolorcolumn
 	autocmd FileType python setlocal colorcolumn=81
 augroup END
 " autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup golight
+	autocmd!
+	autocmd User GoyoEnter let g:airline_disabled=1 | Limelight 0.6
+	autocmd User GoyoLeave unlet! g:airline_disabled | Limelight!
+augroup END
 
 " -----------------------------------------------------------------------------
 " maps using leader
@@ -133,6 +141,7 @@ let mapleader = " "
 map <silent> <leader>p		:setlocal paste! list! <bar> IndentLinesToggle<CR>
 map <silent> <leader>l		:call LightSwitch()<CR>
 map <silent> <leader>s		:setlocal spell!<CR>
+" map <silent> <leader>f		:FZF<CR>
 
 function LightSwitch()
 	if &bg ==? 'dark'
