@@ -11,7 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'gruvbox-community/gruvbox'		" gruvbox color theme
 Plug 'vim-airline/vim-airline'	" airline status and bufferlines
 Plug 'mhinz/vim-signify'	" VCS differences apear in gutter (along with some basic tools)
-" Plug 'tpope/vim-fugitive'	" more extensive git support
+Plug 'tpope/vim-fugitive'	" more extensive git support
 " Plug 'editorconfig/editorconfig-vim' " editor config is great for collaboration
 Plug 'dense-analysis/ale'	" Async Lint Engine
 Plug 'Yggdroot/indentLine'	" show levels of indentation
@@ -59,7 +59,7 @@ let g:ale_python_mypy_options = '--config-file .cicd_scripts/static_analysis/con
 {{- end }}
 
 " -----------------------------------------------------------------------------
-" PLUGIN CONFIG - ale
+" PLUGIN CONFIG - misc
 let g:indentLine_char = '▏'
 
 " =============================================================================
@@ -101,8 +101,10 @@ set number relativenumber	" Hyrbid numbers - current line has number, others are
 augroup numbertoggle		" Mode switching
 	autocmd!
 	autocmd TermOpen * setlocal nonumber norelativenumber
-	autocmd BufEnter,FocusGained,InsertLeave * setlocal relativenumber	" Absolute numbers - Insert mode/Unfocused
-	autocmd BufLeave,FocusLost,InsertEnter   * setlocal norelativenumber	" Hyrbrid numbers - Normal/Visual modes
+	" Hyrbrid numbers - Normal/Visual modes (but only if line numbers are on)
+	autocmd BufEnter,FocusGained,InsertLeave * if &number | setlocal relativenumber | endif
+	" Absolute numbers - Insert mode/Unfocused
+	autocmd BufLeave,FocusLost,InsertEnter   * setlocal norelativenumber
 augroup END
 
 " -----------------------------------------------------------------------------
@@ -128,9 +130,9 @@ augroup END
 " -----------------------------------------------------------------------------
 " maps using leader
 let mapleader = " "
-map <silent> <leader>p		:set paste! list! <bar> IndentLinesToggle<CR>
+map <silent> <leader>p		:setlocal paste! list! <bar> IndentLinesToggle<CR>
 map <silent> <leader>l		:call LightSwitch()<CR>
-map <silent> <leader>s		:set spell!<CR>
+map <silent> <leader>s		:setlocal spell!<CR>
 
 function LightSwitch()
 	if &bg ==? 'dark'
