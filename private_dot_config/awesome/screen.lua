@@ -9,6 +9,13 @@ local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = require("menu").mainmenu })
 
 -- {{{ Wibar
+local battery_monitor = awful.widget.watch("acpi", 30,
+    function(widget, stdout)
+        percentage = string.match(stdout, "%d+%%")
+        remaining = string.match(stdout, "%d+:%d+")
+        widget:set_text(percentage .. " " .. remaining)
+    end)
+
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock(" %F %H:%M ")
 
@@ -145,6 +152,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            battery_monitor,
             mytextclock,
             s.mylayoutbox,
         },
