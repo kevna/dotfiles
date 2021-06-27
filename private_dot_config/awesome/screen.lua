@@ -12,8 +12,8 @@ local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 local battery_monitor = awful.widget.watch("acpi", 30,
     function(widget, stdout)
         percentage = string.match(stdout, "%d+%%")
-        remaining = string.match(stdout, "%d+:%d+")
-        widget:set_text(percentage .. " " .. remaining)
+        remaining = string.match(stdout, "%d+:%d+") or ""
+        widget:set_text(string.format("%s%s", percentage, remaining))
     end)
 
 -- Create a textclock widget
