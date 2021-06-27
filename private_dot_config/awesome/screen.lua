@@ -72,8 +72,38 @@ local function set_wallpaper(s)
     end
 end
 
+local function get_layouts(s)
+    local layouts
+    if s.geometry.height > s.geometry.width then
+        -- Portrait display
+        layouts = {
+            awful.layout.suit.tile.bottom,
+            awful.layout.suit.tile.top,
+            awful.layout.suit.fair.horizontal,
+            -- awful.layout.suit.spiral.dwindle,
+            awful.layout.suit.corner.nw,
+        }
+    else
+        -- Landscape display
+        layouts = {
+            awful.layout.suit.tile,
+            awful.layout.suit.tile.left,
+            awful.layout.suit.fair,
+            awful.layout.suit.spiral.dwindle,
+            awful.layout.suit.corner.nw,
+        }
+    end
+    return layouts
+end
+
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+screen.connect_signal("property::geometry", function(s)
+    set_wallpaper(s)
+    s.layouts = get_layouts(s)
+    for tag in screen.tags do
+        awful.layout.set(s.layouts[1], t)
+    end
+end)
 --
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal("arrange", function (s)
@@ -91,23 +121,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    if s.geometry.width >= s.geometry.height then
-        s.layouts = {
-            awful.layout.suit.tile,
-            awful.layout.suit.tile.left,
-            awful.layout.suit.fair,
-            awful.layout.suit.spiral.dwindle,
-            awful.layout.suit.corner.nw,
-        }
-    else
-        s.layouts = {
-            awful.layout.suit.tile.bottom,
-            awful.layout.suit.tile.top,
-            awful.layout.suit.fair.horizontal,
-            -- awful.layout.suit.spiral.dwindle,
-            awful.layout.suit.corner.nw,
-        }
-    end
+    s.layouts = get_layouts(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, s.layouts[1])
@@ -125,7 +139,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
-        filter  = awful.widget.taglist.filter.all,
+        filter  = awful.widget.taglist.filter.noempty,
         buttons = taglist_buttons
     }
 
