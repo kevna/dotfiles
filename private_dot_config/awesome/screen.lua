@@ -67,6 +67,18 @@ end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
+--
+-- No borders when rearranging only 1 non-floating or maximized client
+screen.connect_signal("arrange", function (s)
+    local only_one = #s.tiled_clients == 1
+    for _, c in pairs(s.clients) do
+        if only_one and not c.floating or c.maximized then
+            c.border_width = 0
+        else
+            c.border_width = beautiful.border_width
+        end
+    end
+end)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -78,22 +90,20 @@ awful.screen.connect_for_each_screen(function(s)
             awful.layout.suit.tile.left,
             awful.layout.suit.fair,
             awful.layout.suit.spiral.dwindle,
-            awful.layout.suit.magnifier,
             awful.layout.suit.corner.nw,
         }
     else
         s.layouts = {
             awful.layout.suit.tile.bottom,
             awful.layout.suit.tile.top,
-            awful.layout.suit.fair,
-            awful.layout.suit.spiral.dwindle,
-            awful.layout.suit.magnifier,
+            awful.layout.suit.fair.horizontal,
+            -- awful.layout.suit.spiral.dwindle,
             awful.layout.suit.corner.nw,
         }
     end
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, s.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
