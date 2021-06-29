@@ -8,7 +8,7 @@ awful.rules.rules = require("rules")
 
 
 local function titlebar_toggle(c)
-    if c.floating then
+    if c.floating and c.has_titlebar then
         awful.titlebar.show(c)
     else
         awful.titlebar.hide(c)
@@ -72,6 +72,8 @@ client.connect_signal("request::titlebars", function(c)
         },
         layout = wibox.layout.align.horizontal
     }
+    -- Flag for if titlebar is set, since we don't seem to be able to check c.titlebars_enabled directly
+    c.has_titlebar = true
 end)
 client.connect_signal("property::floating", titlebar_toggle)
 

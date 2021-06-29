@@ -54,6 +54,31 @@ return {
       }, properties = { titlebars_enabled = true }
     },
 
+    {
+      rule = {
+        class = "Microsoft Teams",
+        type = "notification",
+      },
+      properties = {
+        floating = true,
+        titlebars_enabled = false,
+      },
+    },
+
+    {
+      rule = {
+        class = "Firefox",
+        instance = "Toolkit",
+        -- Name isn't always set before the manage signal, which results in unreliable matching
+        -- name = "Picture-in-Picture",
+      },
+      properties = {
+        sticky = true,
+        floating = true,
+        titlebars_enabled = false,
+      },
+    },
+
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
