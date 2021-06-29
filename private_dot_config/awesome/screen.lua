@@ -101,7 +101,7 @@ screen.connect_signal("property::geometry", function(s)
     set_wallpaper(s)
     s.layouts = get_layouts(s)
     for tag in screen.tags do
-        awful.layout.set(s.layouts[1], t)
+        awful.layout.set(s.layouts[1], tag)
     end
 end)
 --
