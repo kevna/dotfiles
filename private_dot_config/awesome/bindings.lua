@@ -133,7 +133,7 @@ local globalkeys = gears.table.join(
         { group = "media" })
 )
 
-for i = 1, 9 do
+for i = 1, 10 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
