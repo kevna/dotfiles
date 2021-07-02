@@ -123,6 +123,7 @@ local globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
     awful.key({ modkey }, "d", function() awful.spawn("rofi -show drun") end,
         { group = "launcher" }),
+    awful.key({ modkey }, "BackSpace", function() os.execute("i3lock-fancy -pf 'Victor-Mono-Regular' -- scrot -z") end),
     awful.key({}, "XF86AudioRaiseVolume", function() os.execute("pactl set-sink-volume @DEFAULT_SINK@ +5%") end,
         { group = "media" }),
     awful.key({}, "XF86AudioLowerVolume", function() os.execute("pactl set-sink-volume @DEFAULT_SINK@ -5%") end,
