@@ -19,10 +19,12 @@ Plug 'sheerun/vim-polyglot'	" extensive language support
 
 {{- if eq .class "personal" }}
 " Experimental plugins we aren't ready for at work yet
+Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}	" Show color swatches for hex etc.
 Plug 'machakann/vim-sandwich'	" sandwich :S
 Plug 'junegunn/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'	" Extensive completion snippets for various langagues
 
 " These can be used to run unittest from within vim
 "Plug 'janko/vim-test'
@@ -61,6 +63,12 @@ let g:ale_python_mypy_options = '--config-file .cicd_scripts/static_analysis/con
 {{- end }}
 
 " -----------------------------------------------------------------------------
+" PLUGIN CONFIG - snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+" list all snippets for current filetype
+let g:UltiSnipsListSnippets="<c-l>"
+
+" -----------------------------------------------------------------------------
 " PLUGIN CONFIG - misc
 let g:indentLine_char = '▏'
 let g:fzf_options = '--preview "pygmentize -O style=gruvbox-dark {}"'
@@ -76,6 +84,7 @@ set nowrap			" turn off line wrap
 set hidden			" allow hiding buffers (can open a new buffer without writing)
 set ignorecase smartcase	" search is only case sensetive if searchstring contains caps
 set nohlsearch			" don't highlight search results once locked in
+set clipboard=unnamedplus	" yank, delete and put with X11 clipboard (but not primary)
 
 " -----------------------------------------------------------------------------
 " place backup files
@@ -141,7 +150,7 @@ let mapleader = " "
 map <silent> <leader>p		:setlocal paste! list! <bar> IndentLinesToggle<CR>
 map <silent> <leader>l		:call LightSwitch()<CR>
 map <silent> <leader>s		:setlocal spell!<CR>
-" map <silent> <leader>f		:FZF<CR>
+map <silent> <leader>f		:FZF<CR>
 
 function LightSwitch()
 	if &bg ==? 'dark'
@@ -158,7 +167,7 @@ nmap <silent> <backspace>	:nohlsearch<CR>
 
 " -----------------------------------------------------------------------------
 " terminal mode keymaps
-tnoremap <silent> <esc> <C-\><C-n>
+" tnoremap <silent> <esc> <C-\><C-n>
 
 " -----------------------------------------------------------------------------
 " command keymaps
