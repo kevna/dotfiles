@@ -55,3 +55,9 @@ guessRemote=true
 [alias]
 ctags = !$(git rev-parse --git-path hooks)/ctags
 diffk = difftool --tool=kitty --no-symlinks --dir-diff
+pushnew = "!f() { : git push; \
+	BRANCH=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); \
+	git push -u origin $BRANCH \
+		-o merge_request.create \
+		-o merge_request.title=\"Draft:${BRANCH%-*} - <task title>\"; \
+	}; f"
