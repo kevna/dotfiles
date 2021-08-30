@@ -1,3 +1,4 @@
+{{- /* vim: set ft=lua : */ -}}
 local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
@@ -8,7 +9,6 @@ local menubar = require("menubar")
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
 
 
 local utils = require("utils")
@@ -130,8 +130,13 @@ local globalkeys = gears.table.join(
         { group = "media" }),
     awful.key({}, "XF86AudioMute", function() os.execute("pactl set-sink-mute @DEFAULT_SINK@ toggle") end,
         { group = "media" }),
-    awful.key({}, "XF86AudioMicMute", function() os.execute("pactl set-source-mute @DEFAULT_SOURCE@ toggle") end,
+    {{- if eq .class "work" }}
+    awful.key({}, "XF86AudioMicMute", function() os.execute("pactl set-source-mute 'alsa_input.pci-0000_00_1f.3.analog-stereo' toggle") end,
         { group = "media" })
+    {{- else }}
+    awful.key({}, "XF86AudioMicMute", function() os.execute("pactl set-source-mute @DEFAULT_SINK@ toggle") end,
+        { group = "media" })
+    {{- end }}
 )
 
 for i = 1, 10 do

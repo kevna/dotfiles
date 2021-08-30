@@ -1,3 +1,4 @@
+{{- /* vim: set ft=lua : */ -}}
 local awful = require("awful")
 local gears = require("gears")
 -- Widget and layout library
@@ -8,7 +9,7 @@ local bindings = require("bindings")
 local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = require("menu").mainmenu })
 
--- {{{ Wibar
+-- Wibar
 local battery_monitor = awful.widget.watch("acpi", 30,
     function(widget, stdout)
         percentage = string.match(stdout, "%d+%%")
@@ -67,7 +68,11 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
+        {{- if eq .class "work" }}
+        gears.wallpaper.centered('/home/amoore/Pictures/trust.png', s)
+        {{- else }}
         gears.wallpaper.set(beautiful.bg_normal)
+        {{- end }}
         -- gears.wallpaper.maximized(wallpaper, s, true)
     end
 end
@@ -86,8 +91,13 @@ local function get_layouts(s)
     else
         -- Landscape display
         layouts = {
+            {{- if eq .class "work" }}
+            awful.layout.suit.tile.left,
+            awful.layout.suit.tile,
+            {{- else }}
             awful.layout.suit.tile,
             awful.layout.suit.tile.left,
+            {{- end }}
             awful.layout.suit.fair,
             awful.layout.suit.spiral.dwindle,
             awful.layout.suit.corner.nw,
@@ -172,5 +182,3 @@ awful.screen.connect_for_each_screen(function(s)
         },
     }
 end)
--- }}}
-
