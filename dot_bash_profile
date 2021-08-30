@@ -1,7 +1,7 @@
 . ~/.profile
 
 if [ "$XDG_SESSION_TYPE" == "wayland" ]; then
-	export GDK_BACKEND=wayland
+	# export GDK_BACKEND=wayland
 	export MOZ_ENABLE_WAYLAND=1
 	export KITTY_ENABLE_WAYLAND=1
 fi
@@ -10,3 +10,4 @@ export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
 unset SSH_AGENT_PID
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export BASH_PROFILE=1

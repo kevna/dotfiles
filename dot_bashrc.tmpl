@@ -1,5 +1,8 @@
 # Source the global bashrc so we don't miss any system configuration
 . /etc/bash.bashrc
+if [ -z $BASH_PROFILE ]; then
+	. ~/.bash_profile
+fi
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -69,14 +72,14 @@ function wt() {
 		# Create a new worktree parallel to the first worktree (master or bare)
 		# ie. from a branchname make repo/branchname (with subdirs for feeature/)
 		directory=$(dirname $(_worktree_list '/'))/$2
-		git worktree add "$directory" "$2"
+		git worktree add "$directory"
 	elif [ $1 == "-" ]; then
 		# Emulate behaviour of cd -
 		directory=$OLDWT
 	else
 		directory=$(_worktree_list "$1")
 	fi
-	if [ $PWD != $directory ] && [ -d $directory ]; then
+	if [ $PWD != "$directory" ] && [ -d "$directory" ]; then
 		OLDWT=$PWD
 		cd $directory
 		return 0
@@ -92,4 +95,3 @@ export FZF_DEFAULT_OPTS="--cycle --preview 'pygmentize -O style=gruvbox-dark {} 
 PROMPT_COMMAND="PS_ERR=\${?#0}"
 {{/* PS1='\[\a\e[32;1m\]\u@\h\[\e[m\]:\[\e[94m\]$(_shortwd)\[\e[m\]$(gitline.sh) \[\e[91;1m\]${PS_ERR:-\[\e[92;1m\]0}\[\e[m\]\$ ' */}}
 PS1='\[\a\e[32;1m\]\u@\h\[\e[m\]:$(statusline) \[\e[91;1m\]${PS_ERR:-\[\e[92;1m\]0}\[\e[m\]\$ '
-
