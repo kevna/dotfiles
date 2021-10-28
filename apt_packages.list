@@ -11,6 +11,8 @@ xcape
 materia-gtk-theme
 papirus-icon-theme
 oxygencursors
+playerctl
+# ff requires media.hardwaremediakeys.enabled = true to use playerctl
 
 # ------------------------------------------------------------------------------
 # Other gui apps
