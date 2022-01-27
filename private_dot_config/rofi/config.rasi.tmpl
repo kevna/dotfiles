@@ -1,3 +1,4 @@
+{{- $version := output "rofi" "-version" -}}
 configuration {
 	font:		"monospace 8";
 	{{- if  eq .class "work" }}
@@ -5,13 +6,18 @@ configuration {
 	{{- else }}
 	modi:		"window,drun,run";
 	{{- end }}
+	{{- if not (contains "1.7.1" $version) }}
 	theme:		"gruvbox-dark-hard";
+	{{- end }}
 	combi-modi:	"window,drun";
 	display-drun:	"app";
 	display-window:	"win";
 	show-icons:	true;
 	sidebar-mode:	true;
 }
+{{- if contains "1.7.1" $version }}
+@theme "gruvbox-dark-hard"
+{{- end }}
 
 * {
 	columns:	4;
