@@ -154,7 +154,6 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 {{- if .experimentalconfig }}
-# bindsym $mod+m exec i3-input -F 'mark --toggle %s' -l 1 -P 'Mark: '
 bindsym $mod+p title_format "Share | %title"
 bindsym $mod+o title_format "%title"
 # read 1 character and mark the current window with this character
@@ -236,28 +235,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-{{- if eq .class "personal" }}
-mode "move" {
-	# move focused window
-	bindsym h move left
-	bindsym j move down
-	bindsym k move up
-	bindsym l move right
-
-	# alternatively, you can use the cursor keys:
-	bindsym Left move left
-	bindsym Down move down
-	bindsym Up move up
-	bindsym Right move right
-
-	# back to normal: Enter or Escape
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-}
-
-bindsym $mod+m mode "move"
-{{- end }}
 
 #######################
 # i3 WM GRUVBOX THEME #
