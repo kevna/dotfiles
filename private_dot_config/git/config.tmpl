@@ -3,6 +3,9 @@
 name = "{{ .name }}"
 email = "{{ .email }}"
 
+[advice]
+statusHints = false
+
 [init]
 # allows us to have default git hooks that apply to all projects
 # see https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
@@ -20,6 +23,7 @@ ui = auto,row
 [diff]
 relative = true
 noprefix = true
+renames = copies
 colorMoved = dimmed-zebra
 colorMovedWs = ignore-space-change
 tool = nvim
@@ -51,6 +55,9 @@ autoupdate = 1
 
 [worktree]
 guessRemote=true
+
+[url "git@github.com:kevna/"]
+insteadOf = https://github.com/kevna/
 
 [alias]
 ctags = !$(git rev-parse --git-path hooks)/ctags
