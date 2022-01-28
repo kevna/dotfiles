@@ -2,8 +2,8 @@
 
 lakevna's dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
 
-Get the appropriate package from the [latest chezmoi release](https://github.com/twpayne/chezmoi/releases/latest) to install it with the matching package management
-
-Finally, install the dotfiles with:
-    chezmoi init https://github.com/kevna/dotfiles.git
-
+Install the [latest chezmoi release](https://github.com/twpayne/chezmoi/releases/latest), initialise the source directory with this repo and apply the config files in one command:
+```
+sh -c "$(curl -fsLS git.io/chezmoi)" -- init kevna --apply
+```
+WARNING: this will clobber any exsting config files, to merge them instead drop `--apply` and use chezmoi commands to merge/apply the configuration manually.
