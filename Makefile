@@ -2,8 +2,8 @@ all:
 	chezmoi apply
 
 install-packages:
-	pip3 install --user $(shell grep -v '^#' pip_packages.list)
-	sudo apt-get install --no-install-recommends $(shell grep -v '^#' apt_packages.list)
+	pip3 install --user $(shell chezmoi execute-template < .chezmoitemplates/pip_packages)
+	sudo apt-get install --no-install-recommends $(shell chezmoi execute-template < .chezmoitemplates/apt_packages)
 
 update-third-party: \
 	update-victormono

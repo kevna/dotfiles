@@ -1,0 +1,38 @@
+{{- /* Terminal applications */}}
+neovim
+silversearcher-ag
+
+{{- if eq .class "personal" }}
+imagemagick
+texlive-xetex
+{{ end -}}
+
+{{- if not .headless }}
+{{- /* ------------------------------------------------------------------ */ -}}
+{{- /* General X apps */}}
+kitty
+zathura
+pavucontrol
+
+{{- if eq .class "personal" }}
+inkscape
+{{ end -}}
+
+{{- /* WMs */}}
+i3-wm feh
+
+awesome
+
+{{- /* Tools */}}
+rofi
+parcellite
+i3lock-fancy
+playerctl
+{{- /* ff requires media.hardwaremediakeys.enabled = true to use playerctl */}}
+
+{{- /* Themes */}}
+materia-gtk-theme
+papirus-icon-theme
+oxygencursors
+picom
+{{ end -}}

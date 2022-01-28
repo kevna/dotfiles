@@ -1,0 +1,10 @@
+git+https://github.com/kevna/statusline.git
+
+{{- if not .headless }}
+{{- /* ------------------------------------------------------------------ */ -}}
+{{- /* for i3bar */}}
+py3status
+pytz
+tzlocal
+i3ipc
+{{ end -}}
