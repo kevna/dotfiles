@@ -1,11 +1,32 @@
 {{- /* vim: set ft=yaml : */ -}}
-data:
-  {{- if contains "terminal" .chezmoi.hostname }}
-  class: "work"
-  {{- else }}
-  class: "personal"
-  {{- end }}
-  name: "Aaron Moore"
-  email: ""
-  experimentalconfig: false
 
+data:
+  {{ $class := "personal" -}}
+  {{- if hasKey . "class" -}}
+  {{-   $class = .class -}}
+  {{- else if contains "terminal" .chezmoi.hostname -}}
+  {{-   $class = "work" -}}
+  {{- end -}}
+  class: {{ $class }}
+
+  name: Aaron Moore
+
+  {{ $email := "" -}}
+  {{- if hasKey . "email" -}}
+  {{-   $email = .email -}}
+  {{- else -}}
+  {{-   $email = promptString "email" -}}
+  {{- end -}}
+  email: {{ $email | quote }}
+
+  {{ $headless := false -}}
+  {{- if hasKey . "headless" -}}
+  {{-   $headless = .headless -}}
+  {{- end -}}
+  headless: {{ $headless }}
+
+  {{ $experimental := false -}}
+  {{- if hasKey . "experimentalconfig" -}}
+  {{-   $experimental = .experimentalconfig -}}
+  {{- end -}}
+  experimentalconfig: {{ $experimental }}
