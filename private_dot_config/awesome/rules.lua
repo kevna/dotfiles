@@ -62,6 +62,11 @@ return {
       properties = {
         floating = true,
         titlebars_enabled = false,
+        focus = false,
+        skip_decoration = true,
+        skip_taskbar = true,
+        ontop = true,
+        sticky = true,
       },
     },
 

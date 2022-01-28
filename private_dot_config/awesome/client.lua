@@ -28,6 +28,9 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
+    if c.transient_for then
+        c:move_to_screen(c.transient_for.screen)
+    end
     c.shape = function(cr, w, h)
         gears.shape.rounded_rect(cr, w, h, beautiful.border_radius)
     end
