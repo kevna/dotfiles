@@ -52,8 +52,12 @@ let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '●'
 let g:ale_python_auto_pipenv = 1
 {{- if eq .class "work" }}
-let g:ale_python_pylint_options = '--rcfile .cicd_scripts/static_analysis/config/pylintrc'
-let g:ale_python_mypy_options = '--config-file .cicd_scripts/static_analysis/config/mypy.ini'
+let g:ale_linters = {
+\	'python': ['pylint', 'bandit', 'mypy']
+\}
+let g:ale_python_pylint_options = '--rcfile .cicd_scripts/execute/config/python/pylintrc'
+let g:ale_python_bandit_options = '-c .cicd_scripts/execute/config/python/bandit.config'
+let g:ale_python_mypy_options = '--config-file .cicd_scripts/execute/config/python/mypy.ini'
 {{- end }}
 
 " -----------------------------------------------------------------------------
