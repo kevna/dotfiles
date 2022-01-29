@@ -59,6 +59,11 @@ guessRemote=true
 [url "git@github.com:kevna/"]
 insteadOf = https://github.com/kevna/
 
+{{ if eq .class "work" -}}
+[includeIf "gitdir:~/Documents/micros/"]
+path = ~/.config/git/microservices
+
+{{ end -}}
 [alias]
 ctags = !$(git rev-parse --git-path hooks)/ctags
 diffk = difftool --tool=kitty --no-symlinks --dir-diff

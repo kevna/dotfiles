@@ -1,0 +1,5 @@
+#!/bin/sh
+hooks=$(git rev-parse --git-path hooks)
+case "$1" in
+  rebase) exec ${hooks}/post-merge ;;
+esac
