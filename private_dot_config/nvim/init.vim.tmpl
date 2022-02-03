@@ -24,6 +24,16 @@ Plug 'machakann/vim-sandwich'	" sandwich :S
 Plug 'junegunn/fzf'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'	" Extensive completion snippets for various langagues
 {{- end }}
+{{- if .experimentalconfig }}
+" Plug 'junegunn/vim-easy-align'	" Align assignments/text/comments with ease
+" Plug 'mg979/vim-visual-multi'		" Support multiple cursors at once
+" Treesitter requires nightly build
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-writer.nvim'
+" we could also try sonokai theme, galaxyline, telescope and ranger
+{{- end }}
 
 call plug#end()
 
