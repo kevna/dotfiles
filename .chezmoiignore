@@ -5,4 +5,5 @@ Makefile
 {{- if ne .class "work" }}
 **/i3/*workspace*
 **/conky
+**/git/templates/microservice
 {{- end }}
