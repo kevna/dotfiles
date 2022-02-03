@@ -1,4 +1,6 @@
 #!/bin/bash
 set -eufo pipefail
-sudo apt-get install -y '{{ template "apt_packages" . }}'
+{{/*
+sudo apt-get install -y {{ template "apt_packages" . }}
 pip3 install --user '{{ template "pip_packages" . }}'
+*/}}
