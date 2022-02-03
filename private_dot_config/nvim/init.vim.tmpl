@@ -14,7 +14,7 @@ Plug 'mhinz/vim-signify'	" VCS differences apear in gutter (along with some basi
 Plug 'tpope/vim-fugitive'	" more extensive git support
 " Plug 'editorconfig/editorconfig-vim' " editor config is great for collaboration
 Plug 'dense-analysis/ale'	" Async Lint Engine
-Plug 'Yggdroot/indentLine'	" show levels of indentation
+Plug 'lukas-reineke/indent-blankline.nvim'	" show levels of indentation
 Plug 'sheerun/vim-polyglot'	" extensive language support
 
 {{- if eq .class "personal" }}
@@ -79,6 +79,10 @@ let g:UltiSnipsListSnippets="<c-l>"
 " -----------------------------------------------------------------------------
 " PLUGIN CONFIG - misc
 let g:indentLine_char = '▏'
+{{- if .experimentalconfig }}
+" let g:indent_blankline_show_current_context = v:true
+" let g:indent_blankline_show_current_context_start = v:true
+{{- end }}
 let g:fzf_options = '--preview "pygmentize -O style=gruvbox-dark {}"'
 
 " =============================================================================
