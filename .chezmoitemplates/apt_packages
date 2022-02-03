@@ -1,6 +1,6 @@
 {{- /* Terminal applications */}}
 neovim
-silversearcher-ag
+ripgrep
 
 {{- if eq .class "personal" }}
 imagemagick
