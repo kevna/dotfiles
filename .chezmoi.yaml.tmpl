@@ -1,32 +1,36 @@
 {{- /* vim: set ft=yaml : */ -}}
 
 data:
-  {{ $class := "personal" -}}
-  {{- if hasKey . "class" -}}
-  {{-   $class = .class -}}
-  {{- else if contains "terminal" .chezmoi.hostname -}}
-  {{-   $class = "work" -}}
-  {{- end -}}
-  class: {{ $class }}
-
   name: Aaron Moore
 
-  {{ $email := "" -}}
+  {{- $email := "" -}}
   {{- if hasKey . "email" -}}
   {{-   $email = .email -}}
   {{- else -}}
   {{-   $email = promptString "email" -}}
-  {{- end -}}
+  {{- end }}
   email: {{ $email | quote }}
 
-  {{ $headless := false -}}
+  {{- /* */}}
+  chassis: {{ (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+
+  {{- $class := "personal" -}}
+  {{- if hasKey . "class" -}}
+  {{-   $class = .class -}}
+  {{- else if contains "terminal" .chezmoi.hostname -}}
+  {{-   $class = "work" -}}
+  {{- end }}
+  class: {{ $class }}
+
+
+  {{- $headless := false -}}
   {{- if hasKey . "headless" -}}
   {{-   $headless = .headless -}}
-  {{- end -}}
+  {{- end }}
   headless: {{ $headless }}
 
-  {{ $experimental := false -}}
+  {{- $experimental := false -}}
   {{- if hasKey . "experimentalconfig" -}}
   {{-   $experimental = .experimentalconfig -}}
-  {{- end -}}
+  {{- end }}
   experimentalconfig: {{ $experimental }}
