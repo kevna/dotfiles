@@ -10,12 +10,22 @@ local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = require("menu").mainmenu })
 
 -- Wibar
-local battery_monitor = awful.widget.watch("acpi", 30,
-    function(widget, stdout)
-        percentage = string.match(stdout, "%d+%%")
-        remaining = string.match(stdout, "%d+:%d+") or ""
-        widget:set_text(string.format("%s%s", percentage, remaining))
-    end)
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget") {}
+-- local mpris_widget = require("awesome-wm-widgets.mpris-widget") {}
+{{- if eq .class "work" }}
+local docker_widget = require("awesome-wm-widgets.docker-widget.docker") {}
+{{- end }}
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume') {
+	widget_type = 'arc',
+	-- thickness = 1,
+}
+{{- if eq .chassis "laptop" }}
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness") {}
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc") {
+	show_current_level = true,
+	-- arc_thickness = 1,
+}
+{{- end }}
 
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock(" %F %H:%M ")
@@ -176,7 +186,17 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            battery_monitor,
+	    spacing = 3,
+	    ram_widget,
+	    -- mpris_widget,
+	    {{- if eq .class "work" }}
+	    docker_widget,
+	    {{- end }}
+	    volume_widget,
+	    {{- if eq .chassis "laptop" }}
+	    brightness_widget,
+	    batteryarc_widget,
+	    {{- end }}
             mytextclock,
             s.mylayoutbox,
         },
