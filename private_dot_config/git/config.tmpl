@@ -38,6 +38,12 @@ cmd = nvim -d "$LOCAL" "$REMOTE"
 cmd = kitty +kitten diff "$LOCAL" "$REMOTE"
 prompt = false
 
+[merge]
+tool = fugitive
+
+[mergetool "fugitive"]
+cmd = nvim +Gvdiffsplit! "$MERGED"
+
 [fetch]
 prune = true
 
