@@ -1,2 +1,2 @@
 # Poetry lock files are text but generated
-poetry.lock -diff
+poetry.lock binary
