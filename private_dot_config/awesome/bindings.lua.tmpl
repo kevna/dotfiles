@@ -12,7 +12,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 
 local utils = require("utils")
-local menu = require("menu")
 
 
 -- Default modkey.
@@ -44,8 +43,6 @@ local globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () menu.mainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
