@@ -17,16 +17,23 @@ Xcursor.size:	16
 {{- if contains "terminal" .chezmoi.hostname }}
 #define t_maxlines 20480
 #define t_font xft:monospace:size=9
-#define t_b_font xft:monospace:size=9:style=bold
-#define t_i_font xft:monospace:size=9:style=italic
-#define t_b_i_font xft:monospace:size=9:style=bold italic
 {{- else }}
 #define t_maxlines 512
 #define t_font xft:monospace:size=7
-#define t_b_font xft:monospace:size=7:style=bold
-#define t_i_font xft:monospace:size=7:style=italic
-#define t_b_i_font xft:monospace:size=7:style=bold
 {{- end }}
+#define t_b_font t_font:style=bold
+#define t_i_font t_font:style=italic
+#define t_b_i_font t_font:style=bold italic
+
+! alternatives for 11px and below:
+! neep alt for default, modd for italics (normal or semicondensed width)
+! #define t_font -*-neep alt-medium-r-semicondensed-*-11-*-*-*-*-*-*-*
+! #define t_b_font -*-neep alt-bold-r-semicondensed-*-11-*-*-*-*-*-*-*
+! #define t_i_font -*-modd-medium-r-semicondensed-*-11-*-*-*-*-*-*-*
+! #define t_i_b_font -*-modd-bold-r-semicondensed-*-11-*-*-*-*-*-*-*
+! gohu unicode (optionally using xft) can use mod for italics if using 11px
+! #define t_font -*-gohufont-medium-r-normal-*-11-*-*-*-*-*-*-*
+! #define t_font xft:GohuFont:size=7
 
 ! ==== COLOURSCHEME: gruvbox ====
 #define t_black     #282828
