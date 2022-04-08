@@ -12,9 +12,9 @@ gaps inner 7
 
 # Play nice with GNOME
 # rfkill allows managing bluetooth devices from gnome-control-panel
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-rfkill &
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id gnome-flashback &
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-rfkill &
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#exec --no-startup-id gnome-flashback &
 {{/* exec --no-startup-id /usr/bin/gnome-screensaver */}}
 
 exec --no-startup-id parcellite &
@@ -38,7 +38,11 @@ set $refresh_status killall -SIGUSR1 py3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_status
+{{- if eq .class "work" }}
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute "alsa_input.pci-0000_00_1f.3.analog-stereo" toggle && $refresh_status
+{{- else }}
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_status
+{{- end }}
 {{- if eq .class "personal" }}
 # MPC player controls
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
