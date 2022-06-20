@@ -5,6 +5,7 @@ if [ "$3" -eq 1 ]; then
 	if [ "$1" -eq 0 ]; then
 		# A null pre-checkout means we're in a clone or worktree
 		make init
+		ln -s venv .venv # allow poetry to accerss the sharedinfra venv
 	fi
 	make install-dev
 fi
