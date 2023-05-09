@@ -2,10 +2,11 @@
 hooks=$(git rev-parse --git-path hooks)
 ${hooks}/ctags >/dev/null 2>&1 &
 if [ "$3" -eq 1 ]; then
-	if [ "$1" -eq 0 ]; then
+	if [ "$1" = "0000000000000000000000000000000000000000" ]; then
 		# A null pre-checkout means we're in a clone or worktree
-		make init
 		ln -s venv .venv # allow poetry to accerss the sharedinfra venv
+		make init
 	fi
-	make install-dev
+	# Newwer support  || Older support
+	make venv-install || make install-dev
 fi
